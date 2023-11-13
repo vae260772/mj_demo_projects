@@ -25,10 +25,11 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 
-public class BWebMain extends Activity {
+public class BWebMainActivity extends Activity {
 
-    private static final String TAG = "BWebMain";
+    private static final String TAG = "BWebMainActivity";
     private WebView webView;
+    //加密存储
     String loadUrl = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
 
     private ValueCallback<Uri> mUploadCallBack;
@@ -64,7 +65,7 @@ public class BWebMain extends Activity {
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
                 String WgPackage = "javascript:window.WgPackage = {name:'" + getPackageName() + "', version:'"
-                        + getAppVersionName(BWebMain.this) + "'}";
+                        + getAppVersionName(BWebMainActivity.this) + "'}";
                 webView.evaluateJavascript(WgPackage, new ValueCallback<String>() {
                     @Override
                     public void onReceiveValue(String value) {
@@ -77,7 +78,7 @@ public class BWebMain extends Activity {
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 super.onPageStarted(view, url, favicon);
                 String WgPackage = "javascript:window.WgPackage = {name:'" + getPackageName() + "', version:'"
-                        + getAppVersionName(BWebMain.this) + "'}";
+                        + getAppVersionName(BWebMainActivity.this) + "'}";
                 webView.evaluateJavascript(WgPackage, new ValueCallback<String>() {
                     @Override
                     public void onReceiveValue(String value) {
@@ -92,8 +93,6 @@ public class BWebMain extends Activity {
 
         webView.loadUrl(loadUrl);
         setContentView(webView);
-        AppsFlyerLibUtil.init(this);
-
     }
 
 
@@ -158,19 +157,19 @@ public class BWebMain extends Activity {
         webView.setWebChromeClient(new WebChromeClient() {
             // For Android 3.0+
             public void openFileChooser(ValueCallback<Uri> uploadMsg, String acceptType) {
-                BWebMain.this.mUploadCallBack = uploadMsg;
+                BWebMainActivity.this.mUploadCallBack = uploadMsg;
                 openFileChooseProcess();
             }
 
             // For Android < 3.0
             public void openFileChooser(ValueCallback<Uri> uploadMsgs) {
-                BWebMain.this.mUploadCallBack = uploadMsgs;
+                BWebMainActivity.this.mUploadCallBack = uploadMsgs;
                 openFileChooseProcess();
             }
 
             // For Android  > 4.1.1
             public void openFileChooser(ValueCallback<Uri> uploadMsg, String acceptType, String capture) {
-                BWebMain.this.mUploadCallBack = uploadMsg;
+                BWebMainActivity.this.mUploadCallBack = uploadMsg;
                 openFileChooseProcess();
             }
 
@@ -178,7 +177,7 @@ public class BWebMain extends Activity {
             public boolean onShowFileChooser(WebView webView,
                                              ValueCallback<Uri[]> filePathCallback,
                                              WebChromeClient.FileChooserParams fileChooserParams) {
-                BWebMain.this.mUploadCallBackAboveL = filePathCallback;
+                BWebMainActivity.this.mUploadCallBackAboveL = filePathCallback;
                 openFileChooseProcess();
                 return true;
             }
@@ -209,7 +208,7 @@ public class BWebMain extends Activity {
             if (TextUtils.isEmpty(name) || TextUtils.isEmpty(data)) {
                 return;
             }
-            AppsFlyerLibUtil.event(BWebMain.this, name, data);
+            AppsFlyerLibUtil.event(BWebMainActivity.this, name, data);
         }
     }
 

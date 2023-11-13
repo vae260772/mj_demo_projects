@@ -29,14 +29,14 @@
 
 
         <activity
-            android:name=".mj_b_mian.BWebMain"
+            android:name=".mj_b_mian.BWebMainActivity"
             android:exported="false">
 
         </activity>
 
 
         <activity
-            android:name=".mj_b_mian.BWebMain2"
+            android:name=".mj_b_mian.BWebChildAct"
             android:exported="false">
 
         </activity>

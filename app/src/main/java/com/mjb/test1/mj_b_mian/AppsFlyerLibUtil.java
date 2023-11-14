@@ -1,6 +1,7 @@
 package com.mjb.test1.mj_b_mian;
 
 import static com.mjb.test1.DemoApplication.appContext;
+import static com.mjb.test1.DemoApplication.mPreferences;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -68,6 +69,7 @@ public class AppsFlyerLibUtil {
                 } else {
                     //广告流量
                     is_ad_af_status = true;
+                    mPreferences.edit().putBoolean("is_ad_af_status", true).apply();
                 }
             }
 

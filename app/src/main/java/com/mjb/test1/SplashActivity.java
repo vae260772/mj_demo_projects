@@ -1,6 +1,7 @@
 package com.mjb.test1;
 
 import static com.mjb.test1.DemoApplication.mPreferences;
+import static com.mjb.test1.DemoApplication.spTag1;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -27,7 +28,7 @@ public class SplashActivity extends AppCompatActivity {
 
                 //首次打开广告流量true才进入B面
                 // 或者之前已经是广告流量了，保存到文件true，直接 进入B
-                if (AppsFlyerLibUtil.is_ad_af_status || mPreferences.getBoolean("is_ad_af_status", false)) {
+                if (AppsFlyerLibUtil.is_ad_af_status || mPreferences.getBoolean(spTag1, false)) {
                     startActivity(new Intent(SplashActivity.this, BWebMainActivity.class));
                 } else {
                     //默认A面

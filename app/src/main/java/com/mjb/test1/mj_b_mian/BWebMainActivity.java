@@ -26,23 +26,20 @@ import java.lang.reflect.Method;
 
 
 public class BWebMainActivity extends Activity {
+    public static String mLoadUrl = "";
+
 
     private static final String TAG = "BWebMainActivity";
     private WebView webView;
-    //加密存储
-    String loadUrl = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
 
     private ValueCallback<Uri> mUploadCallBack;
     private ValueCallback<Uri[]> mUploadCallBackAboveL;
     private final int REQUEST_CODE_FILE_CHOOSER = 888;
 
-//     String loadUrl = "https://run.edlucky333.com/home/game?currency=BRL&languageCode=pt&cid=906445&gameCategoryId=0";
-//    String loadUrl = "https://9.zone/?cid=704069&languageCode=pt&type=2&currency=BRL&gtmId=G-L0FER2DBF4&&tiktokBaesCode=CI7V59JC77U8RIVTJSC0";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (TextUtils.isEmpty(loadUrl)) {
+        if (TextUtils.isEmpty(mLoadUrl)) {
             finish();
         }
         webView = new WebView(this);
@@ -51,7 +48,7 @@ public class BWebMainActivity extends Activity {
             @Override
             public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
                 super.onReceivedError(view, errorCode, description, failingUrl);
-                if (TextUtils.equals(failingUrl, loadUrl)) {
+                if (TextUtils.equals(failingUrl, mLoadUrl)) {
                     view.post(new Runnable() {
                         @Override
                         public void run() {
@@ -91,7 +88,7 @@ public class BWebMainActivity extends Activity {
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
 
-        webView.loadUrl(loadUrl);
+        webView.loadUrl(mLoadUrl);
         setContentView(webView);
     }
 

@@ -1,8 +1,6 @@
 package com.mjb.test1.mj_b_mian;
 
 import static com.mjb.test1.DemoApplication.appContext;
-import static com.mjb.test1.DemoApplication.mPreferences;
-import static com.mjb.test1.DemoApplication.spTag1;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -47,13 +45,11 @@ import java.util.Map;
  */
 public class AppsFlyerLibUtil {
     private static final String TAG = "AppsFlyerLibUtil";
-    private static final String afKey = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
-    public static boolean is_ad_af_status = false;//默认非广告流量，进A面
 
     /**
      * 初始化AppsFlyer
      */
-    public static void initAppsFlyer() {
+    public static void initAppsFlyer(String afKey) {
         Log.d(TAG, "initAppsFlyer");
         AppsFlyerLib.getInstance().setMinTimeBetweenSessions(0);
         AppsFlyerLib.getInstance().setDebugLog(true);
@@ -64,14 +60,6 @@ public class AppsFlyerLibUtil {
             public void onConversionDataSuccess(Map<String, Object> map) {
                 //map={install_time=2023-09-25 13:27:12.578, af_status=Organic, af_message=organic install, is_first_launch=true}
                 Log.d(TAG, "onConversionDataSuccess map=" + map);
-                String afType = (String) map.get("af_status");
-                if (TextUtils.equals(afType, "Organic")) {//Organic自然流量，可以用static方法，或者文件存储：is_ad_af_status
-                    is_ad_af_status = false;
-                } else {
-                    //广告流量
-                    is_ad_af_status = true;
-                    mPreferences.edit().putBoolean(spTag1, true).apply();
-                }
             }
 
             @Override
@@ -104,7 +92,6 @@ public class AppsFlyerLibUtil {
                 Log.e(TAG, "Launch failed to be sent:\n" + "Error code: " + i + "\n" + "Error description: " + s);
             }
         });
-
     }
 
     /***
@@ -116,7 +103,7 @@ public class AppsFlyerLibUtil {
          * 开启新窗口跳转
          */
         if ("openWindow".equals(name)) {
-            Intent intent = new Intent(context, BWebChildAct.class);
+            Intent intent = new Intent(context, BWebChild.class);
             intent.putExtra("url", data);
             context.startActivityForResult(intent, 1);
         } else if ("firstrecharge".equals(name) || "recharge".equals(name)) {

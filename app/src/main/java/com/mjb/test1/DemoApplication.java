@@ -9,11 +9,6 @@ import android.content.SharedPreferences;
 public class DemoApplication extends Application {
     public static Context appContext;
     String TAG = "DemoApplication";
-    public static String spTag1 = "xxxx";
-    public static String spTag2 = "xxxxxxxxxxx";
-    public static String spTag3 = "xxxxxxxxxxxxxxxxxxxxx";
-
-
     public static SharedPreferences mPreferences;
     public static String appId = BuildConfig.APPLICATION_ID;
     public static int version = BuildConfig.VERSION_CODE;
@@ -23,6 +18,5 @@ public class DemoApplication extends Application {
         super.onCreate();
         appContext = this;
         mPreferences = getSharedPreferences(appId, MODE_PRIVATE);
-        initAppsFlyer();
     }
 }

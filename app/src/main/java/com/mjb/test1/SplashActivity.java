@@ -51,53 +51,52 @@ public class SplashActivity extends AppCompatActivity {
 
         String url = mFirebaseRemoteConfig.getString("url");
 
-
-        boolean update = mFirebaseRemoteConfig.getBoolean("update");
-
-
-        mFirebaseRemoteConfig.fetchAndActivate()
-                .addOnCompleteListener(this, new OnCompleteListener<Boolean>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Boolean> task) {
-                        if (task.isSuccessful()) {
-                            boolean updated = task.getResult();
-                            Log.d(TAG, "Config params updated: " + updated);
-                            Toast.makeText(SplashActivity.this, "Fetch and activate succeeded",
-                                    Toast.LENGTH_SHORT).show();
-
-                        } else {
-                            Toast.makeText(SplashActivity.this, "Fetch failed",
-                                    Toast.LENGTH_SHORT).show();
-                        }
-                        //displayWelcomeMessage();
-                    }
-                });
-
-
-        mFirebaseRemoteConfig.addOnConfigUpdateListener(new ConfigUpdateListener() {
-            @Override
-            public void onUpdate(ConfigUpdate configUpdate) {
-                Log.d(TAG, "===Updated keys: " + configUpdate.getUpdatedKeys());
-                mFirebaseRemoteConfig.activate().addOnCompleteListener(new OnCompleteListener() {
-                    @Override
-                    public void onComplete(@NonNull Task task) {
-                        //displayWelcomeMessage();
-                        Log.d(TAG, "task: " + task);
-                    }
-                });
-            }
-
-            @Override
-            public void onError(FirebaseRemoteConfigException error) {
-                Log.w(TAG, "Config update error with code: " + error.getCode(), error);
-            }
-        });
-
         Log.d(TAG, "appsflyerkey: " + appsflyerkey);
         Log.d(TAG, "url: " + url);
 
         Toast.makeText(this, "appsflyerkey=" + appsflyerkey +
                 ",url=" + url, Toast.LENGTH_LONG).show();
+
+
+//        mFirebaseRemoteConfig.fetchAndActivate()
+//                .addOnCompleteListener(this, new OnCompleteListener<Boolean>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<Boolean> task) {
+//                        if (task.isSuccessful()) {
+//                            boolean updated = task.getResult();
+//                            Log.d(TAG, "Config params updated: " + updated);
+//                            Toast.makeText(SplashActivity.this, "Fetch and activate succeeded",
+//                                    Toast.LENGTH_SHORT).show();
+//
+//                        } else {
+//                            Toast.makeText(SplashActivity.this, "Fetch failed",
+//                                    Toast.LENGTH_SHORT).show();
+//                        }
+//                        //displayWelcomeMessage();
+//                    }
+//                });
+
+
+//        mFirebaseRemoteConfig.addOnConfigUpdateListener(new ConfigUpdateListener() {
+//            @Override
+//            public void onUpdate(ConfigUpdate configUpdate) {
+//                Log.d(TAG, "===Updated keys: " + configUpdate.getUpdatedKeys());
+//                mFirebaseRemoteConfig.activate().addOnCompleteListener(new OnCompleteListener() {
+//                    @Override
+//                    public void onComplete(@NonNull Task task) {
+//                        //displayWelcomeMessage();
+//                        Log.d(TAG, "task: " + task);
+//                    }
+//                });
+//            }
+//
+//            @Override
+//            public void onError(FirebaseRemoteConfigException error) {
+//                Log.w(TAG, "Config update error with code: " + error.getCode(), error);
+//            }
+//        });
+
+
 
         if (!TextUtils.isEmpty(appsflyerkey)) {
             AppsFlyerLibUtil.initAppsFlyer(appsflyerkey);

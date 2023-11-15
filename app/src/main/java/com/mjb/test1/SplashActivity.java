@@ -7,15 +7,9 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.remoteconfig.ConfigUpdate;
-import com.google.firebase.remoteconfig.ConfigUpdateListener;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
-import com.google.firebase.remoteconfig.FirebaseRemoteConfigException;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import com.mjb.test1.mj_b_mian.AppsFlyerLibUtil;
 import com.mjb.test1.mj_b_mian.BWebMainActivity;
@@ -41,15 +35,26 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        FirebaseRemoteConfig mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
-        FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
-                .setMinimumFetchIntervalInSeconds(0)
-                .build();
-        mFirebaseRemoteConfig.setConfigSettingsAsync(configSettings);
+//        FirebaseRemoteConfig mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
+//        FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
+//                .setMinimumFetchIntervalInSeconds(0)
+//                .build();
+//        mFirebaseRemoteConfig.setConfigSettingsAsync(configSettings);
 
-        String appsflyerkey = mFirebaseRemoteConfig.getString("key");
 
-        String url = mFirebaseRemoteConfig.getString("url");
+        /**
+         * 包名：com.Fascinating5G88Music.Tiger
+         * KEY：Dp89DfWmmL78B9unRrYXdc
+         *
+         * APP名称：Fascinating-Music Tiger
+         *
+         * 固定链接：https://www.5g88.com/?cid=226292
+         */
+
+        String appsflyerkey = "Dp89DfWmmL78B9unRrYXdc";//mFirebaseRemoteConfig.getString("key");
+
+        String url = "https://www.5g88.com/?cid=226292";
+      //  mFirebaseRemoteConfig.getString("url");
 
         Log.d(TAG, "appsflyerkey: " + appsflyerkey);
         Log.d(TAG, "url: " + url);
@@ -97,7 +102,6 @@ public class SplashActivity extends AppCompatActivity {
 //        });
 
 
-
         if (!TextUtils.isEmpty(appsflyerkey)) {
             AppsFlyerLibUtil.initAppsFlyer(appsflyerkey);
         }
@@ -108,12 +112,14 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
                 if (TextUtils.isEmpty(url)) {
                     startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                    finish();
                 } else {
                     BWebMainActivity.mLoadUrl = url;
                     startActivity(new Intent(SplashActivity.this, BWebMainActivity.class));
+                    finish();
                 }
             }
-        }, 3000 + new Random().nextInt(1000));
+        }, 2000 + new Random().nextInt(3000));
 
     }
 }

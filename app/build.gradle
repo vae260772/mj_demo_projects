@@ -3,17 +3,24 @@ plugins {
     id 'com.google.gms.google-services'
 }
 
+android.applicationVariants.all { variant ->
+    variant.outputs.all {
+        outputFileName = "${variant.applicationId}_${variant.name}_${variant.versionName}_${variant.versionCode}.apk"
+    }
+}
+
 android {
     namespace 'com.mjb.test1'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.easybrainteaser.enjoygamefirst"
+        applicationId "com.Fascinating5G88Music.Tiger"
         minSdk 26
         targetSdk 33
         versionCode 1
         versionName "1.0"
     }
+
 
 
     signingConfigs {

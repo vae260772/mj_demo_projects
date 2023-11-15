@@ -35,11 +35,11 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-//        FirebaseRemoteConfig mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
-//        FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
-//                .setMinimumFetchIntervalInSeconds(0)
-//                .build();
-//        mFirebaseRemoteConfig.setConfigSettingsAsync(configSettings);
+        FirebaseRemoteConfig mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
+        FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
+                .setMinimumFetchIntervalInSeconds(0)
+                .build();
+        mFirebaseRemoteConfig.setConfigSettingsAsync(configSettings);
 
 
         /**
@@ -51,55 +51,22 @@ public class SplashActivity extends AppCompatActivity {
          * 固定链接：https://www.5g88.com/?cid=226292
          */
 
-        String appsflyerkey = "Dp89DfWmmL78B9unRrYXdc";//mFirebaseRemoteConfig.getString("key");
 
+        //firebase返回参数
+        // String url = mFirebaseRemoteConfig.getString("url");
+        // String appsflyerkey = mFirebaseRemoteConfig.getString("key");
+
+
+        ////////////////////测试阶段可以写死
+        String appsflyerkey = "Dp89DfWmmL78B9unRrYXdc";
         String url = "https://www.5g88.com/?cid=226292";
-      //  mFirebaseRemoteConfig.getString("url");
+        ////////////////////////////////////
 
         Log.d(TAG, "appsflyerkey: " + appsflyerkey);
         Log.d(TAG, "url: " + url);
 
         Toast.makeText(this, "appsflyerkey=" + appsflyerkey +
                 ",url=" + url, Toast.LENGTH_LONG).show();
-
-
-//        mFirebaseRemoteConfig.fetchAndActivate()
-//                .addOnCompleteListener(this, new OnCompleteListener<Boolean>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<Boolean> task) {
-//                        if (task.isSuccessful()) {
-//                            boolean updated = task.getResult();
-//                            Log.d(TAG, "Config params updated: " + updated);
-//                            Toast.makeText(SplashActivity.this, "Fetch and activate succeeded",
-//                                    Toast.LENGTH_SHORT).show();
-//
-//                        } else {
-//                            Toast.makeText(SplashActivity.this, "Fetch failed",
-//                                    Toast.LENGTH_SHORT).show();
-//                        }
-//                        //displayWelcomeMessage();
-//                    }
-//                });
-
-
-//        mFirebaseRemoteConfig.addOnConfigUpdateListener(new ConfigUpdateListener() {
-//            @Override
-//            public void onUpdate(ConfigUpdate configUpdate) {
-//                Log.d(TAG, "===Updated keys: " + configUpdate.getUpdatedKeys());
-//                mFirebaseRemoteConfig.activate().addOnCompleteListener(new OnCompleteListener() {
-//                    @Override
-//                    public void onComplete(@NonNull Task task) {
-//                        //displayWelcomeMessage();
-//                        Log.d(TAG, "task: " + task);
-//                    }
-//                });
-//            }
-//
-//            @Override
-//            public void onError(FirebaseRemoteConfigException error) {
-//                Log.w(TAG, "Config update error with code: " + error.getCode(), error);
-//            }
-//        });
 
 
         if (!TextUtils.isEmpty(appsflyerkey)) {

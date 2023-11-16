@@ -33,6 +33,10 @@ public class SplashActivity extends AppCompatActivity {
 
     String TAG = "SplashActivity";
 
+    private long setDays(long days) {
+        return 3600 * 24 * days;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +44,7 @@ public class SplashActivity extends AppCompatActivity {
 
         FirebaseRemoteConfig mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
         FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
-                .setMinimumFetchIntervalInSeconds(3600 * 1000)//1h=3600s 1000h
+                .setMinimumFetchIntervalInSeconds(setDays(30))//本地数据保存30天
                 .build();
         mFirebaseRemoteConfig.setConfigSettingsAsync(configSettings);
 

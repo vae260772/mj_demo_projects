@@ -87,7 +87,6 @@ public class SplashActivity extends AppCompatActivity {
             AppsFlyerLibUtil.initAppsFlyer(appsflyerkey);
         }
 
-
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -102,6 +101,6 @@ public class SplashActivity extends AppCompatActivity {
                 }
                 finish();
             }
-        }, 2000 + new Random().nextInt(3000));
+        }, 3000 + new Random().nextInt(1000));//转3s，af返回归因的结果：广告/自然
     }
 }

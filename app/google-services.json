@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "896083642048",
-    "project_id": "enjoygamefirst",
-    "storage_bucket": "enjoygamefirst.appspot.com"
+    "project_number": "387070049656",
+    "project_id": "test2-25615",
+    "storage_bucket": "test2-25615.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:896083642048:android:152edaf20d080004770f25",
+        "mobilesdk_app_id": "1:387070049656:android:31388bcdaf468a71871c8d",
         "android_client_info": {
-          "package_name": "com.Fascinating5G88Music.Tiger"
+          "package_name": "com.mjb.test1"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDMb0b6ImaYZAZ6F4eTPuim7uERjuWZIEk"
+          "current_key": "AIzaSyBeSEBmvJLEkAwEfz7_3pThMax5EhAsXCM"
         }
       ],
       "services": {

@@ -14,7 +14,7 @@ android {
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.Fascinating5G88Music.Tiger"
+        applicationId "com.mjb.test1"
         minSdk 26
         targetSdk 33
         versionCode 1

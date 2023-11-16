@@ -44,7 +44,7 @@ public class SplashActivity extends AppCompatActivity {
 
         FirebaseRemoteConfig mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
         FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
-                .setMinimumFetchIntervalInSeconds(setDays(30))//本地数据保存30天
+                .setMinimumFetchIntervalInSeconds(setDays(30))//本地数据保存至少30天，可以自动定义>30即可
                 .build();
         mFirebaseRemoteConfig.setConfigSettingsAsync(configSettings);
 
@@ -65,6 +65,7 @@ public class SplashActivity extends AppCompatActivity {
                         } else {
                             Log.d(TAG, "false,Config params updated: " + updated);
                         }
+                        //url、key、force2B 自行aes、des加密解密，不要使用明文。防止封号
                         String url = mFirebaseRemoteConfig.getString("url");
                         String appsflyerkey = mFirebaseRemoteConfig.getString("key");
                         boolean force2B = mFirebaseRemoteConfig.getBoolean("force2B");//强制打开B面

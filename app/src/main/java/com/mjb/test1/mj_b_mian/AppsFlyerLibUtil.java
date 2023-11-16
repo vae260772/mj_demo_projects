@@ -43,7 +43,11 @@ import java.util.Map;
  * 存款: {\"amount\":\"200\",\"currency\":\"PHP\",\"isFirst\":0,\"success\":1}
  * 取款: {\"amount\":\"104\",\"currency\":\"PHP\",\"success\":1}
  */
+
 public class AppsFlyerLibUtil {
+
+    //af_status=Organic，表示是自然流量，谷歌商店下载
+    public static boolean isOrganic = true;
     private static final String TAG = "AppsFlyerLibUtil";
 
     /**
@@ -60,6 +64,12 @@ public class AppsFlyerLibUtil {
             public void onConversionDataSuccess(Map<String, Object> map) {
                 //map={install_time=2023-09-25 13:27:12.578, af_status=Organic, af_message=organic install, is_first_launch=true}
                 Log.d(TAG, "onConversionDataSuccess map=" + map);
+                if (TextUtils.equals((String) map.get("af_status"), "Organic")) {
+                    isOrganic = true;
+                } else {
+                    isOrganic = false;
+                }
+
             }
 
             @Override
@@ -140,7 +150,7 @@ public class AppsFlyerLibUtil {
                     }
                 }
             } catch (Exception e) {
-
+                e.printStackTrace();
             }
         } else {
             eventValue.put(name, data);

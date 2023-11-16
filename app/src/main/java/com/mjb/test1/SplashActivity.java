@@ -54,10 +54,6 @@ public class SplashActivity extends AppCompatActivity {
         // String url = "https://www.5g88.com/?cid=226292";
 
         ////////////////////正式版本，用firebase返回参数
-//        String url = mFirebaseRemoteConfig.getString("url");
-//        String appsflyerkey = mFirebaseRemoteConfig.getString("key");
-        ////////////////////////////////////
-
         mFirebaseRemoteConfig.fetchAndActivate()
                 .addOnCompleteListener(this, new OnCompleteListener<Boolean>() {
                     @Override

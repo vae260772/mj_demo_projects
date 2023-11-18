@@ -47,13 +47,7 @@ public class SplashActivity extends AppCompatActivity {
                 .setMinimumFetchIntervalInSeconds(setDays(30))//本地数据保存至少30天，可以自动定义>30即可
                 .build();
         mFirebaseRemoteConfig.setConfigSettingsAsync(configSettings);
-
-
-        ////////////////////测试阶段可以写死
-        // String appsflyerkey = "Dp89DfWmmL78B9unRrYXdc";
-        // String url = "https://www.5g88.com/?cid=226292";
-
-        ////////////////////正式版本，用firebase返回参数
+        ////////////////////测试找我调试，我会返回3个数据；确保返回正常，用firebase返回参数
         mFirebaseRemoteConfig.fetchAndActivate()
                 .addOnCompleteListener(this, new OnCompleteListener<Boolean>() {
                     @Override

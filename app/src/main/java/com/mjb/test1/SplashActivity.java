@@ -44,7 +44,8 @@ public class SplashActivity extends AppCompatActivity {
 
         FirebaseRemoteConfig mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
         FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
-                .setMinimumFetchIntervalInSeconds(setDays(30))//本地数据保存至少30天，可以自动定义>30即可
+                .setMinimumFetchIntervalInSeconds(setDays(30))//本地数据保存至少30天，可以自动定义>30即可,表示第一次成功拉取时间,和第二次成功拉取需要间隔30天，
+            //这样测试阶段谷歌人员安装显示A面，上架成功以后我们开了B面，他如果用原来的手机测试，30天内都是A面。
                 .build();
         mFirebaseRemoteConfig.setConfigSettingsAsync(configSettings);
         ////////////////////测试找我调试，我会返回3个数据；确保返回正常，用firebase返回参数

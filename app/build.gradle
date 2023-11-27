@@ -81,7 +81,6 @@ dependencies {
 
 
     implementation 'com.alibaba:fastjson:2.0.23'
-    implementation("org.greenrobot:eventbus:3.3.1")
     implementation 'com.appsflyer:af-android-sdk:6.9.0'
     implementation "com.android.installreferrer:installreferrer:2.2"
 

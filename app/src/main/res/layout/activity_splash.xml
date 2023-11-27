@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#0F9387"
-    tools:context=".MainActivity">
+    tools:context=".A_BaseActivity">
 
     <ProgressBar
         android:layout_width="80dp"

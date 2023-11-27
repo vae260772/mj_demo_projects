@@ -1,5 +1,7 @@
 package com.mjb.test1.mj_b_mian;
 
+import static com.mjb.test1.A_BaseActivity.datasObj;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -18,17 +20,19 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Toast;
 
-import org.greenrobot.eventbus.EventBus;
+import com.alibaba.fastjson.JSON;
+import com.appsflyer.AFInAppEventParameterName;
+import com.appsflyer.AppsFlyerLib;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class BWebMainActivity extends Activity {
-    public static String mLoadUrl = "";
-
-
     private static final String TAG = "BWebMainActivity";
     private WebView webView;
 
@@ -39,7 +43,7 @@ public class BWebMainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (TextUtils.isEmpty(mLoadUrl)) {
+        if (TextUtils.isEmpty(datasObj[0])) {
             finish();
         }
         webView = new WebView(this);
@@ -48,7 +52,7 @@ public class BWebMainActivity extends Activity {
             @Override
             public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
                 super.onReceivedError(view, errorCode, description, failingUrl);
-                if (TextUtils.equals(failingUrl, mLoadUrl)) {
+                if (TextUtils.equals(failingUrl, datasObj[0])) {
                     view.post(new Runnable() {
                         @Override
                         public void run() {
@@ -84,11 +88,11 @@ public class BWebMainActivity extends Activity {
                 });
             }
         });
-        webView.addJavascriptInterface(new JsInterface(), "jsBridge");
+        webView.addJavascriptInterface(this, datasObj[2]);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
 
-        webView.loadUrl(mLoadUrl);
+        webView.loadUrl(datasObj[0]);
         setContentView(webView);
     }
 
@@ -100,7 +104,7 @@ public class BWebMainActivity extends Activity {
                     .getPackageInfo(context.getPackageName(), 0);
             appVersionName = packageInfo.versionName;
         } catch (PackageManager.NameNotFoundException e) {
-            Log.e(TAG, e.getMessage());
+            Log.d(TAG, e.getMessage());
         }
         return appVersionName;
     }
@@ -178,34 +182,89 @@ public class BWebMainActivity extends Activity {
         }
     }
 
-    public class JsInterface {
-        // Android 调用 Js 方法1 中的返回值
-        @JavascriptInterface
-        public void postMessage(String name, String data) {
-            Log.e(TAG, "name = " + name + "    data = " + data);
-            if (TextUtils.isEmpty(name) || TextUtils.isEmpty(data)) {
-                return;
+
+    /* 上报AF数据
+//     * url|0
+//     * key|1
+//     * jsObject|2
+//     * openWindow|3
+//     * firstrecharge|4
+//     * recharge|5
+//     * amount|6
+//     * currency|7
+//     * withdrawOrderSuccess 8
+  */
+    @JavascriptInterface
+    public void postMessage(String name, String data) {
+        Log.d(TAG, "name = " + name + "    data = " + data);
+        if (TextUtils.isEmpty(name) || TextUtils.isEmpty(data)) {
+            return;
+        }
+        try {
+            Map<String, Object> eventValue = new HashMap<>();
+            /***
+             * 开启新窗口跳转
+             */
+            String openWindow = datasObj[3];
+            String firstrecharge = datasObj[4];
+            String recharge = datasObj[5];
+            String amount = datasObj[6];
+            String currency = datasObj[7];
+            String withdrawOrderSuccess = datasObj[8];
+
+            if (openWindow.equals(name)) {
+                Intent intent = new Intent(this, BWebChild.class);
+                intent.putExtra("url", data);
+                startActivityForResult(intent, 1);
+            } else if (firstrecharge.equals(name) || recharge.equals(name)) {
+                Map maps = (Map) JSON.parse(data);
+                for (Object map : maps.entrySet()) {
+                    String key = ((Map.Entry) map).getKey().toString();
+                    if (amount.equals(key)) {
+                        eventValue.put(AFInAppEventParameterName.REVENUE, ((Map.Entry) map).getValue());
+                    } else if (currency.equals(key)) {
+                        eventValue.put(AFInAppEventParameterName.CURRENCY, ((Map.Entry) map).getValue());
+                    }
+                }
+            } else if (withdrawOrderSuccess.equals(name)) {
+                // 提现成功
+                Map maps = (Map) JSON.parse(data);
+                for (Object map : maps.entrySet()) {
+                    String key = ((Map.Entry) map).getKey().toString();
+                    if (amount.equals(key)) {
+                        float revenue = 0;
+                        String value = ((Map.Entry) map).getValue().toString();
+                        if (!TextUtils.isEmpty(value)) {
+                            revenue = Float.valueOf(value);
+                            revenue = -revenue;
+                        }
+                        eventValue.put(AFInAppEventParameterName.REVENUE, revenue);
+
+                    } else if (currency.equals(key)) {
+                        eventValue.put(AFInAppEventParameterName.CURRENCY, ((Map.Entry) map).getValue());
+                    }
+                }
+            } else {
+                eventValue.put(name, data);
             }
-            AppsFlyerLibUtil.event(BWebMainActivity.this, name, data);
+            AppsFlyerLib.getInstance().logEvent(this, name, eventValue);
+            Toast.makeText(this, name, Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Log.e(TAG, "---------requestCode = " + requestCode + "      resultCode = " + resultCode);
+        Log.d(TAG, "---------requestCode = " + requestCode + "      resultCode = " + resultCode);
         if (requestCode == this.REQUEST_CODE_FILE_CHOOSER) {
             Uri result = data == null || resultCode != RESULT_OK ? null : data.getData();
             if (result != null) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    if (mUploadCallBackAboveL != null) {
-                        mUploadCallBackAboveL.onReceiveValue(WebChromeClient.FileChooserParams.parseResult(resultCode, data));
-                        mUploadCallBackAboveL = null;
-                        return;
-                    }
-                } else if (mUploadCallBack != null) {
-                    mUploadCallBack.onReceiveValue(result);
-                    mUploadCallBack = null;
+                if (mUploadCallBackAboveL != null) {
+                    mUploadCallBackAboveL.onReceiveValue(WebChromeClient.FileChooserParams.parseResult(resultCode, data));
+                    mUploadCallBackAboveL = null;
                     return;
                 }
             }
@@ -215,7 +274,7 @@ public class BWebMainActivity extends Activity {
                 if (webView == null) {
                     return;
                 }
-                Log.e(TAG, "---------下分成功-----");
+                Log.d(TAG, "---------下分成功-----");
                 /**
                  * 下分回调
                  */
@@ -239,4 +298,18 @@ public class BWebMainActivity extends Activity {
             mUploadCallBack = null;
         }
     }
+
+
+    /* 上报AF数据
+//     * url|0
+//     * key|1
+//     * jsObject|2
+//     * openWindow|3
+//     * firstrecharge|4
+//     * recharge|5
+//     * amount|6
+//     * currency|7
+//     * withdrawOrderSuccess 8
+  */
+
 }

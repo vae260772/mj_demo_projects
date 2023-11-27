@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -19,6 +18,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -32,14 +32,14 @@ public class BWebChild extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         String url = getIntent().getStringExtra("url");
-        Log.e(TAG, "url  =" + url);
-
+        Log.d(TAG, "url  =" + url);
         if (TextUtils.isEmpty(url)) {
             finish();
         }
-        com.alibaba.fastjson.JSONObject object = JSON.parseObject(url);
+        JSONObject object = JSON.parseObject(url);
+        assert object != null;
         loadUrl = object.getString("url");
-        Log.e(TAG, "loadUrl  =" + loadUrl);
+        Log.d(TAG, "loadUrl  =" + loadUrl);
         RelativeLayout relativeLayout = new RelativeLayout(this);
         relativeLayout.setLayoutParams(new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT));
@@ -58,9 +58,6 @@ public class BWebChild extends Activity {
                 } catch (Exception e) {// 防止crash (如果手机上没有安装处理某个scheme开头的url的APP, 会导致crash)
                     return true;// 没有安装该app时，返回true，表示拦截自定义链接，但不跳转，避免弹出上面的错误页面
                 }
-                // TODO Auto-generated method stub
-                // 返回值是true的时候控制去WebView打开，为false调用系统浏览器或第三方浏览器
-                // view.loadUrl(uri.toString());
             }
 
             @Override
@@ -116,18 +113,13 @@ public class BWebChild extends Activity {
         setting.setUseWideViewPort(true);
         setting.setUserAgentString(setting.getUserAgentString().replaceAll("; wv", ""));
         // 视频播放需要使用
-        int SDK_INT = Build.VERSION.SDK_INT;
-        if (SDK_INT > 16) {
-            setting.setMediaPlaybackRequiresUserGesture(false);
-        }
+        setting.setMediaPlaybackRequiresUserGesture(false);
         setting.setSupportZoom(false);// 支持缩放
 
         try {
             Class<?> clazz = setting.getClass();
             Method method = clazz.getMethod("setAllowUniversalAccessFromFileURLs", boolean.class);
-            if (method != null) {
-                method.invoke(setting, true);
-            }
+            method.invoke(setting, true);
         } catch (IllegalArgumentException | NoSuchMethodException | IllegalAccessException
                  | InvocationTargetException e) {
             e.printStackTrace();

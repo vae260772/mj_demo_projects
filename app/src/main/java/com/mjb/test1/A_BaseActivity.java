@@ -18,7 +18,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
-import com.mjb.test1.mj_b_mian.BWebMainActivity;
 
 import java.util.Locale;
 import java.util.Map;
@@ -55,10 +54,11 @@ public class A_BaseActivity extends AppCompatActivity {
                             Log.d(TAG, "datas: " + datas);
 
                             final TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+                            //手机壳iso
                             final String simCountry = tm.getSimCountryIso();
                             // 创建Locale对象
                             Locale currentLocale = Locale.getDefault();
-                            // 获取当前手机设置的语言
+                            // 获取当前手机设置的语言=巴西
                             String currentLanguage = currentLocale.getLanguage();
                             Log.d(TAG, "simCountry=" + simCountry);
                             Log.d(TAG, "currentLanguage=" + currentLanguage);

@@ -1,4 +1,4 @@
-package com.mjb.test1.mj_b_mian;
+package com.mjb.test1;
 
 import android.app.Activity;
 import android.content.Intent;

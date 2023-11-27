@@ -187,6 +187,7 @@ public class BWebMainActivity extends Activity {
                 return;
             }
             AppsFlyerLibUtil.event(BWebMainActivity.this, name, data);
+
         }
     }
 

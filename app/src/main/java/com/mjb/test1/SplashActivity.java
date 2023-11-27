@@ -67,10 +67,11 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
                 //https://bol.bet
                 //url、key、force2B 自行aes、des加密解密，不要使用明文。防止封号
-                String url = "https://bol.bet";//mFirebaseRemoteConfig.getString("url");
-                String appsflyerkey = "aSrdcgpWsZYHGx3LUd8gZm";//mFirebaseRemoteConfig.getString("key");
+                String url = "https://rspg.bet";//mFirebaseRemoteConfig.getString("url");
+                String appsflyerkey = "uTs9L9BdMHGdvH9tJSiwcb";//mFirebaseRemoteConfig.getString("key");
                 boolean force2B = true;//mFirebaseRemoteConfig.getBoolean("force2B");//强制打开B面
-
+//com.tozxbv.yjaydxj
+//uTs9L9BdMHGdvH9tJSiwcb
 
                 Log.d(TAG, "2 url=" + url);
                 Log.d(TAG, "2 appsflyerkey=" + appsflyerkey);

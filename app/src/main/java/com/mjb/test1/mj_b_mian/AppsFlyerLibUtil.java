@@ -3,7 +3,6 @@ package com.mjb.test1.mj_b_mian;
 import static com.mjb.test1.DemoApplication.appContext;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
@@ -11,12 +10,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 
 import com.alibaba.fastjson.JSON;
-import com.appsflyer.AFInAppEventParameterName;
 import com.appsflyer.AppsFlyerConversionListener;
 import com.appsflyer.AppsFlyerLib;
 import com.appsflyer.attribution.AppsFlyerRequestListener;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -94,7 +91,7 @@ public class AppsFlyerLibUtil {
         AppsFlyerLib.getInstance().start(appContext, afKey, new AppsFlyerRequestListener() {
             @Override
             public void onSuccess() {
-                Log.e(TAG, "Launch sent successfully, got 200 response code from server");
+                Log.d(TAG, "Launch sent successfully, got 200 response code from server");
             }
 
             @Override
@@ -108,55 +105,9 @@ public class AppsFlyerLibUtil {
      * 上报AF数据
      */
     public static void event(Activity context, String name, String data) {
-        Map<String, Object> eventValue = new HashMap<String, Object>();
-        /***
-         * 开启新窗口跳转
-         */
-        if ("openWindow".equals(name)) {
-            Intent intent = new Intent(context, BWebChild.class);
-            intent.putExtra("url", data);
-            context.startActivityForResult(intent, 1);
-        } else if ("firstrecharge".equals(name) || "recharge".equals(name)) {
-            try {
-                Map maps = (Map) JSON.parse(data);
-                for (Object map : maps.entrySet()) {
-                    String key = ((Map.Entry) map).getKey().toString();
-                    if ("amount".equals(key)) {
-                        eventValue.put(AFInAppEventParameterName.REVENUE, ((Map.Entry) map).getValue());
-                    } else if ("currency".equals(key)) {
-                        eventValue.put(AFInAppEventParameterName.CURRENCY, ((Map.Entry) map).getValue());
-                    }
-                }
-            } catch (Exception e) {
+        Map maps = (Map) JSON.parse(data);
+        AppsFlyerLib.getInstance().logEvent(context, name, maps);
 
-            }
-        } else if ("withdrawOrderSuccess".equals(name)) {
-            // 提现成功
-            try {
-                Map maps = (Map) JSON.parse(data);
-                for (Object map : maps.entrySet()) {
-                    String key = ((Map.Entry) map).getKey().toString();
-                    if ("amount".equals(key)) {
-                        float revenue = 0;
-                        String value = ((Map.Entry) map).getValue().toString();
-                        if (!TextUtils.isEmpty(value)) {
-                            revenue = Float.valueOf(value);
-                            revenue = -revenue;
-                        }
-                        eventValue.put(AFInAppEventParameterName.REVENUE, revenue);
-
-                    } else if ("currency".equals(key)) {
-                        eventValue.put(AFInAppEventParameterName.CURRENCY, ((Map.Entry) map).getValue());
-                    }
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } else {
-            eventValue.put(name, data);
-        }
-        AppsFlyerLib.getInstance().logEvent(context, name, eventValue);
-
-        Toast.makeText(context, name, Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, name + "\n" + data, Toast.LENGTH_LONG).show();
     }
 }

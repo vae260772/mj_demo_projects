@@ -14,7 +14,7 @@ android {
     compileSdk 33
 //com.gymabp.sqdvesw  aSrdcgpWsZYHGx3LUd8gZm
     defaultConfig {
-        applicationId "com.gymabp.sqdvesw"
+        applicationId "com.tozxbv.yjaydxj"
         minSdk 26
         targetSdk 33
         versionCode 1

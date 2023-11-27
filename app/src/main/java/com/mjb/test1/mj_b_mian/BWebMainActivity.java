@@ -126,7 +126,6 @@ public class BWebMainActivity extends Activity {
             setting.setMediaPlaybackRequiresUserGesture(false);
         }
         setting.setSupportZoom(false);// 支持缩放
-        EventBus.getDefault().post(new String());
         try {
             Class<?> clazz = setting.getClass();
             Method method = clazz.getMethod("setAllowUniversalAccessFromFileURLs", boolean.class);
@@ -152,24 +151,6 @@ public class BWebMainActivity extends Activity {
             }
         });
         webView.setWebChromeClient(new WebChromeClient() {
-            // For Android 3.0+
-            public void openFileChooser(ValueCallback<Uri> uploadMsg, String acceptType) {
-                BWebMainActivity.this.mUploadCallBack = uploadMsg;
-                openFileChooseProcess();
-            }
-
-            // For Android < 3.0
-            public void openFileChooser(ValueCallback<Uri> uploadMsgs) {
-                BWebMainActivity.this.mUploadCallBack = uploadMsgs;
-                openFileChooseProcess();
-            }
-
-            // For Android  > 4.1.1
-            public void openFileChooser(ValueCallback<Uri> uploadMsg, String acceptType, String capture) {
-                BWebMainActivity.this.mUploadCallBack = uploadMsg;
-                openFileChooseProcess();
-            }
-
             // For Android  >= 5.0
             public boolean onShowFileChooser(WebView webView,
                                              ValueCallback<Uri[]> filePathCallback,
@@ -229,7 +210,6 @@ public class BWebMainActivity extends Activity {
                 }
             }
             clearUploadMessage();
-            return;
         } else if (resultCode == RESULT_OK) {
             if (requestCode == 1) {
                 if (webView == null) {

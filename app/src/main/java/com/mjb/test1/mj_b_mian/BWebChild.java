@@ -26,7 +26,7 @@ import java.lang.reflect.Method;
 public class BWebChild extends Activity {
     private WebView webView;
     private String loadUrl;
-    private String TAG = "BWebChildAct";
+    private String TAG = "BWebChild";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +49,7 @@ public class BWebChild extends Activity {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
                 Uri uri = request.getUrl();
-                Log.e(TAG, " url  = " + url);
+                Log.d(TAG, " url  = " + url);
                 try {
                     Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                     startActivity(intent);
@@ -89,7 +89,7 @@ public class BWebChild extends Activity {
                 finish();
             }
         });
-        textView.setText("X ");
+        textView.setText("X");
         textView.setTextColor(Color.RED);
         textView.setTextSize(25);
         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,

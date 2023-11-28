@@ -48,11 +48,7 @@ public class A_BaseActivity extends AppCompatActivity {
                             //url|key|jsObject|openWindow|firstrecharge|recharge|amount|currency|withdrawOrderSuccess
                             String datas = mFirebaseRemoteConfig.getString(BuildConfig.APPLICATION_ID.replace(".", ""));
                             Log.d(TAG, "datas: " + datas);
-
-
 //com.gymabp.sqdvesw  aSrdcgpWsZYHGx3LUd8gZm
-
-
                             if (!TextUtils.isEmpty(datas)) {
                                 datasObj = datas.split("\\|");
                                 Log.d(TAG, "datasObj=" + datasObj);
@@ -61,6 +57,7 @@ public class A_BaseActivity extends AppCompatActivity {
                                 if (Boolean.parseBoolean(datasObj[9])) {
                                     //备用开关，强制打开B面
                                     startActivity(new Intent(context, BWebMainActivity.class));
+                                    finish();
                                     return;
                                 }
                                 //归因+巴西国家码+葡萄牙语

@@ -130,6 +130,7 @@ public class A_BaseActivity extends AppCompatActivity {
             }
         }, getApplicationContext());
 
+
         AppsFlyerLib.getInstance().start(getApplicationContext(), afKey, new AppsFlyerRequestListener() {
             @Override
             public void onSuccess() {

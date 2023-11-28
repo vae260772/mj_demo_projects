@@ -25,6 +25,7 @@ import android.widget.Toast;
 import com.alibaba.fastjson.JSON;
 import com.appsflyer.AFInAppEventParameterName;
 import com.appsflyer.AppsFlyerLib;
+import com.appsflyer.attribution.AppsFlyerRequestListener;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -247,7 +248,19 @@ public class BWebMainActivity extends Activity {
             } else {
                 eventValue.put(name, data);
             }
-            AppsFlyerLib.getInstance().logEvent(this, name, eventValue);
+            AppsFlyerLib.getInstance().logEvent(this, name, eventValue, new AppsFlyerRequestListener() {
+                @Override
+                public void onSuccess() {
+                    Log.d(TAG, "Event sent successfully");
+                }
+
+                @Override
+                public void onError(int i, String s) {
+                    Log.d(TAG, "Event failed to be sent:\n" +
+                            "Error code: " + i + "\n"
+                            + "Error description: " + s);
+                }
+            });
             Toast.makeText(this, name, Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             e.printStackTrace();

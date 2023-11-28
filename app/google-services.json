@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "387070049656",
-    "project_id": "test2-25615",
-    "storage_bucket": "test2-25615.appspot.com"
+    "project_number": "322731814056",
+    "project_id": "comgymabpsqdvesw",
+    "storage_bucket": "comgymabpsqdvesw.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:387070049656:android:31388bcdaf468a71871c8d",
+        "mobilesdk_app_id": "1:322731814056:android:bc154046d13f163327269d",
         "android_client_info": {
           "package_name": "com.gymabp.sqdvesw"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBeSEBmvJLEkAwEfz7_3pThMax5EhAsXCM"
+          "current_key": "AIzaSyDIDBb7z85866eiOx2uPRqsdcKh1EqBR-o"
         }
       ],
       "services": {

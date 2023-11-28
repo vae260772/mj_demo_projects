@@ -38,7 +38,7 @@ public class BWebMainActivity extends Activity {
 
     private ValueCallback<Uri> mUploadCallBack;
     private ValueCallback<Uri[]> mUploadCallBackAboveL;
-    private final int REQUEST_CODE_FILE_CHOOSER = 888;
+    private final int REQUEST_CODE_FILE_CHOOSER = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

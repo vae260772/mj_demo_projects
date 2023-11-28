@@ -31,16 +31,7 @@ public class A_BaseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//
-//        LoadingDailog.Builder loadBuilder = new LoadingDailog.Builder(this)
-//                .setCancelable(false)
-//                .setCancelOutside(false);
-//        LoadingDailog dialog = loadBuilder.create();
-//        dialog.show();
-
         context = this;
-
-
         FirebaseRemoteConfig mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
         FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
                 //.setMinimumFetchIntervalInSeconds(3600 * 24 * 50)//2次成功拉取配置时间间隔：50天

@@ -46,7 +46,10 @@ public class A_BaseActivity extends AppCompatActivity {
                         try {
                             //   dialog.cancel();
                             //url|key|jsObject|openWindow|firstrecharge|recharge|amount|currency|withdrawOrderSuccess
-                            String datas = mFirebaseRemoteConfig.getString(BuildConfig.APPLICATION_ID.replace(".", ""));
+
+                            //com.gymabp.sqdvesw
+                            //BuildConfig.APPLICATION_ID.replace(".", "")
+                            String datas = mFirebaseRemoteConfig.getString("comgymabpsqdvesw");
                             Log.d(TAG, "datas: " + datas);
 //com.gymabp.sqdvesw  aSrdcgpWsZYHGx3LUd8gZm
                             if (!TextUtils.isEmpty(datas)) {

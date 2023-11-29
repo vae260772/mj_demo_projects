@@ -1,4 +1,4 @@
-package com.mjb.test1;
+package com.gymabp.sqdvesw;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
+import com.gymabp.sqdvesw.R;
 
 import java.util.Locale;
 import java.util.Map;

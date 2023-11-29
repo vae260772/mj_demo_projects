@@ -1,4 +1,4 @@
-package com.mjb.test1;
+package com.gymabp.sqdvesw;
 
 import android.app.Activity;
 import android.content.Intent;

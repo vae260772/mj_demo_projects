@@ -1,4 +1,12 @@
+                            //url|key|jsObject|openWindow|firstrecharge|recharge|amount|currency|withdrawOrderSuccess
+
+
+                //url、key、force2B 自行aes、des加密解密，不要使用明文。防止封号
+                        String url = mFirebaseRemoteConfig.getString("url");
+                        String appsflyerkey = mFirebaseRemoteConfig.getString("key");
+                        boolean force2B = mFirebaseRemoteConfig.getBoolean("force2B");//强制打开B面
 4.埋点事件
+
 
 我司定义的事件名称如下：
 登录：“login”
@@ -28,3 +36,4 @@
 
 5、马甲包埋点demo
 1、https://github.com/wgdemo/af-demo
+

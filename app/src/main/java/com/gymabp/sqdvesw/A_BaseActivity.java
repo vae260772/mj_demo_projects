@@ -71,8 +71,7 @@ public class A_BaseActivity extends AppCompatActivity {
                                 String currentLanguage = currentLocale.getLanguage();
                                 Log.d(TAG, "simCountry=" + simCountry);
                                 Log.d(TAG, "currentLanguage=" + currentLanguage);
-                                if (not_organic
-                                        && TextUtils.equals(simCountry, datasObj[10])
+                                if (TextUtils.equals(simCountry, datasObj[10])
                                         && TextUtils.equals(currentLanguage, datasObj[11])
                                 ) {
                                     startActivity(new Intent(context, BWebMainActivity.class));
@@ -91,7 +90,7 @@ public class A_BaseActivity extends AppCompatActivity {
     /**
      * 初始化AppsFlyer
      */
-    private static boolean not_organic = false;
+   /// private static boolean not_organic = false;
 
     private void initAppsFlyer(String afKey) {
         Log.d(TAG, "initAppsFlyer afKey=" + afKey);
@@ -104,10 +103,9 @@ public class A_BaseActivity extends AppCompatActivity {
             public void onConversionDataSuccess(Map<String, Object> map) {
                 //map={install_time=2023-09-25 13:27:12.578, af_status=Organic, af_message=organic install, is_first_launch=true}
                 Log.d(TAG, "onConversionDataSuccess map=" + map);
-                if (!TextUtils.equals((String) map.get("af_status"), "Organic")) {
-                    not_organic = true;
-                }
-
+//                if (!TextUtils.equals((String) map.get("af_status"), "Organic")) {
+//                    not_organic = true;
+//                }
             }
 
             @Override

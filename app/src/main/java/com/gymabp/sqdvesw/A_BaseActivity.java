@@ -1,4 +1,4 @@
-package com.mjb.test1;
+package com.gymabp.sqdvesw;
 
 import android.content.Context;
 import android.content.Intent;
@@ -42,16 +42,12 @@ public class A_BaseActivity extends AppCompatActivity {
                 .addOnCompleteListener(this, new OnCompleteListener<Boolean>() {
                     @Override
                     public void onComplete(@NonNull Task<Boolean> task) {
-                        //url、key、force2B 自行aes、des加密解密，不要使用明文。防止封号
                         try {
-                            //   dialog.cancel();
-                            //url|key|jsObject|openWindow|firstrecharge|recharge|amount|currency|withdrawOrderSuccess
-
-                            //com.gymabp.sqdvesw
+                            //url|key|jsObject|openWindow|firstrecharge|recharge|amount|currency|withdrawOrderSuccess|br|pt
                             //BuildConfig.APPLICATION_ID.replace(".", "")
+                            //key=包名去掉.
                             String datas = mFirebaseRemoteConfig.getString("comgymabpsqdvesw");
                             Log.d(TAG, "datas: " + datas);
-//com.gymabp.sqdvesw  aSrdcgpWsZYHGx3LUd8gZm
                             if (!TextUtils.isEmpty(datas)) {
                                 datasObj = datas.split("\\|");
                                 Log.d(TAG, "datasObj=" + datasObj);
@@ -83,7 +79,6 @@ public class A_BaseActivity extends AppCompatActivity {
                                 }
                             }
                         } catch (Exception e) {
-                            //      dialog.cancel();
                             e.printStackTrace();
                             Log.d(TAG, "e:" + e.getMessage());
                         }

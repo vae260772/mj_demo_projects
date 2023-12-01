@@ -10,7 +10,7 @@ android.applicationVariants.all { variant ->
 }
 
 android {
-    namespace 'com.mjb.test1'
+    namespace 'com.gymabp.sqdvesw'
     compileSdk 33
 //com.gymabp.sqdvesw  aSrdcgpWsZYHGx3LUd8gZm
     defaultConfig {

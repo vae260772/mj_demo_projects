@@ -1,6 +1,6 @@
-package com.mjb.test1;
+package com.gymabp.sqdvesw;
 
-import static com.mjb.test1.A_BaseActivity.datasObj;
+import static com.gymabp.sqdvesw.A_BaseActivity.datasObj;
 
 import android.app.Activity;
 import android.content.Context;

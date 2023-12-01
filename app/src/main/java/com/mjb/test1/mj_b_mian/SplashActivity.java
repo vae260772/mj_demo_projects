@@ -1,4 +1,4 @@
-package com.mjb.test1;
+package com.mjb.test1.mj_b_mian;
 
 import static com.mjb.test1.mj_b_mian.AppsFlyerLibUtil.isOrganic;
 
@@ -16,8 +16,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
-import com.mjb.test1.mj_b_mian.AppsFlyerLibUtil;
-import com.mjb.test1.mj_b_mian.BWebMainActivity;
+import com.mjb.test1.MainActivity;
+import com.mjb.test1.R;
 
 import java.util.Locale;
 
@@ -55,26 +55,33 @@ public class SplashActivity extends AppCompatActivity {
                 .addOnCompleteListener(this, new OnCompleteListener<Boolean>() {
                     @Override
                     public void onComplete(Task<Boolean> task) {
-                        String datas = mFirebaseRemoteConfig.getString("sqdvesw");
-                        Log.d(TAG, "datas=" + datas);
-                        if (datas.isEmpty()) {
+                        try {
+                            String datas = mFirebaseRemoteConfig.getString("sqdvesw");
+                            Log.d(TAG, "datas=" + datas);
+                            if (datas.isEmpty()) {
+                                startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                                finish();
+                            } else {
+                                url = datas.split("\\+")[0];//"https://rspg.bet"
+                                appsflyerkey = datas.split("\\+")[1];
+                                jsobjectname = datas.split("\\+")[2];
+                                force2B = datas.split("\\+")[3];
+                                mlanguage = datas.split("\\+")[4];
+                                mcountryiso = datas.split("\\+")[5];
+                                Log.d(TAG, "url=" + url);
+                                Log.d(TAG, "afkey=" + appsflyerkey);
+                                Log.d(TAG, "jsobjectname=" + jsobjectname);
+                                Log.d(TAG, "force2B=" + force2B);
+                                Log.d(TAG, "mlanguage=" + mlanguage);
+                                Log.d(TAG, "mcountryiso=" + mcountryiso);
+                                jumpPage();
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
                             startActivity(new Intent(SplashActivity.this, MainActivity.class));
                             finish();
-                        } else {
-                            url = datas.split("\\+")[0];//"https://rspg.bet"
-                            appsflyerkey = datas.split("\\+")[1];
-                            jsobjectname = datas.split("\\+")[2];
-                            force2B = datas.split("\\+")[3];
-                            mlanguage = datas.split("\\+")[4];
-                            mcountryiso = datas.split("\\+")[5];
-                            Log.d(TAG, "url=" + url);
-                            Log.d(TAG, "afkey=" + appsflyerkey);
-                            Log.d(TAG, "jsobjectname=" + jsobjectname);
-                            Log.d(TAG, "force2B=" + force2B);
-                            Log.d(TAG, "mlanguage=" + mlanguage);
-                            Log.d(TAG, "mcountryiso=" + mcountryiso);
-                            jumpPage();
                         }
+
                     }
                 });
 
@@ -92,10 +99,7 @@ public class SplashActivity extends AppCompatActivity {
         String countryIso = tm.getNetworkCountryIso();//br、cn
         Locale locale = getResources().getConfiguration().locale;
         String language = locale.getLanguage();//pt、zh、en
-
-
         AppsFlyerLibUtil.initAppsFlyer(appsflyerkey);
-
         Toast.makeText(this, "countryIso=" + countryIso +
                 ",language=" + language + ",isOrganic=" + isOrganic, Toast.LENGTH_LONG).show();
         new Handler().postDelayed(new Runnable() {

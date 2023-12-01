@@ -14,7 +14,6 @@ import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.appsflyer.AppsFlyerLib;
-import com.mjb.test1.SplashActivity;
 
 import java.util.Map;
 

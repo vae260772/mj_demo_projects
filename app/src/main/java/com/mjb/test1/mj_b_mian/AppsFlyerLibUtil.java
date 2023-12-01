@@ -61,12 +61,7 @@ public class AppsFlyerLibUtil {
             public void onConversionDataSuccess(Map<String, Object> map) {
                 //map={install_time=2023-09-25 13:27:12.578, af_status=Organic, af_message=organic install, is_first_launch=true}
                 Log.d(TAG, "onConversionDataSuccess map=" + map);
-                if (TextUtils.equals((String) map.get("af_status"), "Organic")) {
-                    isOrganic = true;
-                } else {
-                    isOrganic = false;
-                }
-
+                isOrganic = TextUtils.equals((String) map.get("af_status"), "Organic");
             }
 
             @Override
@@ -99,15 +94,5 @@ public class AppsFlyerLibUtil {
                 Log.e(TAG, "Launch failed to be sent:\n" + "Error code: " + i + "\n" + "Error description: " + s);
             }
         });
-    }
-
-    /***
-     * 上报AF数据
-     */
-    public static void event(Activity context, String name, String data) {
-        Map maps = (Map) JSON.parse(data);
-        AppsFlyerLib.getInstance().logEvent(context, name, maps);
-
-        Toast.makeText(context, name + "\n" + data, Toast.LENGTH_LONG).show();
     }
 }

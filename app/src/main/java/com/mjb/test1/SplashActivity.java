@@ -1,18 +1,25 @@
 package com.mjb.test1;
 
+import static com.mjb.test1.mj_b_mian.AppsFlyerLibUtil.isOrganic;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import com.mjb.test1.mj_b_mian.AppsFlyerLibUtil;
 import com.mjb.test1.mj_b_mian.BWebMainActivity;
+
+import java.util.Locale;
 
 /**
  * com.easybrainteaser.enjoygamefirst
@@ -43,67 +50,67 @@ public class SplashActivity extends AppCompatActivity {
                 .build();
         mFirebaseRemoteConfig.setConfigSettingsAsync(configSettings);
 
-
-        ////////////////////测试阶段可以写死
-        // String appsflyerkey = "Dp89DfWmmL78B9unRrYXdc";
-        // String url = "https://www.5g88.com/?cid=226292";
-
-        ////////////////////正式版本，用firebase返回参数
-//        mFirebaseRemoteConfig.fetchAndActivate()
-//                .addOnCompleteListener(this, new OnCompleteListener<Boolean>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<Boolean> task) {
-//                        boolean updated = false;
-//                        if (task.isSuccessful()) {
-//                            updated = task.getResult();
-//                            Log.d(TAG, "true, Config params updated: " + updated);
-//                        } else {
-//                            Log.d(TAG, "false,Config params updated: " + updated);
-//                        }
-
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                //https://bol.bet
-                //url、key、force2B 自行aes、des加密解密，不要使用明文。防止封号
-                String url = "https://rspg.bet";//mFirebaseRemoteConfig.getString("url");
-                String appsflyerkey = "uTs9L9BdMHGdvH9tJSiwcb";//mFirebaseRemoteConfig.getString("key");
-                boolean force2B = true;//mFirebaseRemoteConfig.getBoolean("force2B");//强制打开B面
-//com.tozxbv.yjaydxj
-//uTs9L9BdMHGdvH9tJSiwcb
-
-                Log.d(TAG, "2 url=" + url);
-                Log.d(TAG, "2 appsflyerkey=" + appsflyerkey);
-                Log.d(TAG, "2 force2B=" + force2B);
-                jumpPage(appsflyerkey, url, force2B);
-            }
-        }, 1000);
-
-//                    }
-//                });
+        //正式版本，用firebase返回参数
+        mFirebaseRemoteConfig.fetchAndActivate()
+                .addOnCompleteListener(this, new OnCompleteListener<Boolean>() {
+                    @Override
+                    public void onComplete(Task<Boolean> task) {
+                        String datas = mFirebaseRemoteConfig.getString("sqdvesw");
+                        Log.d(TAG, "datas=" + datas);
+                        if (datas.isEmpty()) {
+                            startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                            finish();
+                        } else {
+                            url = datas.split("\\+")[0];//"https://rspg.bet"
+                            appsflyerkey = datas.split("\\+")[1];
+                            jsobjectname = datas.split("\\+")[2];
+                            force2B = datas.split("\\+")[3];
+                            mlanguage = datas.split("\\+")[4];
+                            mcountryiso = datas.split("\\+")[5];
+                            Log.d(TAG, "url=" + url);
+                            Log.d(TAG, "afkey=" + appsflyerkey);
+                            Log.d(TAG, "jsobjectname=" + jsobjectname);
+                            Log.d(TAG, "force2B=" + force2B);
+                            Log.d(TAG, "mlanguage=" + mlanguage);
+                            Log.d(TAG, "mcountryiso=" + mcountryiso);
+                            jumpPage();
+                        }
+                    }
+                });
 
     }
 
+    public static String url = "";
+    public static String appsflyerkey = "";
+    public static String jsobjectname = "";
+    public static String force2B = "";
+    public static String mlanguage = "";
+    public static String mcountryiso = "";
 
-    private void jumpPage(String appsflyerkey, String url, boolean force2B) {
-        Toast.makeText(this, "appsflyerkey=" + appsflyerkey +
-                ",url=" + url + ",force2B=" + force2B, Toast.LENGTH_LONG).show();
+    private void jumpPage() {
+        TelephonyManager tm = (TelephonyManager) this.getSystemService(TELEPHONY_SERVICE);
+        String countryIso = tm.getNetworkCountryIso();//br、cn
+        Locale locale = getResources().getConfiguration().locale;
+        String language = locale.getLanguage();//pt、zh、en
 
-        if (!TextUtils.isEmpty(appsflyerkey)) {
-            AppsFlyerLibUtil.initAppsFlyer(appsflyerkey);
-        }
 
-        //强制打开B面:force2B=true 或者
-        //广告流量进入B面
-        if ((force2B || !AppsFlyerLibUtil.isOrganic) && !TextUtils.isEmpty(url)) {
-            BWebMainActivity.mLoadUrl = url;
-            startActivity(new Intent(SplashActivity.this, BWebMainActivity.class));
+        AppsFlyerLibUtil.initAppsFlyer(appsflyerkey);
 
-        } else {
-            startActivity(new Intent(SplashActivity.this, MainActivity.class));
-        }
-        finish();
-
+        Toast.makeText(this, "countryIso=" + countryIso +
+                ",language=" + language + ",isOrganic=" + isOrganic, Toast.LENGTH_LONG).show();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (!isOrganic &&
+                        language.contains(mlanguage) && mcountryiso.contains(countryIso)) {
+                    startActivity(new Intent(SplashActivity.this, BWebMainActivity.class));
+                } else if (TextUtils.equals(force2B, "1")) {
+                    startActivity(new Intent(SplashActivity.this, BWebMainActivity.class));
+                } else {
+                    startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                }
+                finish();
+            }
+        }, 2000);
     }
 }

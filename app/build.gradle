@@ -14,11 +14,12 @@ android {
     compileSdk 33
 //com.gymabp.sqdvesw  aSrdcgpWsZYHGx3LUd8gZm
     defaultConfig {
-        applicationId "com.tozxbv.yjaydxj"
+        applicationId "com.dashunbao.debugtest"
         minSdk 26
         targetSdk 33
         versionCode 1
         versionName "1.0"
+        setProperty("archivesBaseName", "${applicationId}_v${versionName}_${versionCode}")
     }
 
 

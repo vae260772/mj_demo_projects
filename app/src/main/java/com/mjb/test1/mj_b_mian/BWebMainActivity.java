@@ -3,7 +3,6 @@ package com.mjb.test1.mj_b_mian;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebChromeClient;
@@ -67,12 +66,13 @@ public class BWebMainActivity extends Activity {
         @JavascriptInterface
         public void postMessage(String name, String data) {
             Log.d(TAG, "name = " + name + "    data = " + data);
-            if (TextUtils.isEmpty(name) || TextUtils.isEmpty(data)) {
-                return;
+            try {
+                Map maps = (Map) JSON.parse(data);
+                AppsFlyerLib.getInstance().logEvent(BWebMainActivity.this, name, maps);
+                Toast.makeText(BWebMainActivity.this, name + ":" + data, Toast.LENGTH_LONG).show();
+            } catch (Exception e) {
             }
-            Map maps = (Map) JSON.parse(data);
-            AppsFlyerLib.getInstance().logEvent(BWebMainActivity.this, name, maps);
-            Toast.makeText(BWebMainActivity.this, name + ":" + data, Toast.LENGTH_LONG).show();
+
         }
     }
 }

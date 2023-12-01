@@ -1,13 +1,39 @@
-"►APP类型：巴西电子游戏
-►APP-LOGO：类似777，slots等等游戏名.最好用2个词组成,每个词第一个字母大写
-►APP介绍图：轮播图要求横图
-►测试链接：   rspg.bet
-►注意：APP国家选择：巴西 Brazil
-►注意：AF时区：巴西圣保罗 Brazil-Sao Paulo
-►三方对接： AF选项国家选择Brazil  币种选择:BRL
-►游戏简介中加上：免责声明 (+18)
-► 游戏面向成年观众，仅供娱乐，禁止所有赌博活动，仅适用于成年人（18 岁以上）
-► 在线赌场游戏不提供真钱赌博，也不提供赢取真钱或真奖的机会！
-► 注意：安防要做好，上架后需要巴西IP手机系统必须是巴西的语言和时区才能进B面，
-► 不管他二审多次审核都看不到B面！！如果包下架了，之前跑广告下载的客户B面要长久正常打开！
-► ip库需要长期续费，如果你们是做缓存的都要保持长久B面能正常打开！"
+                            //url|key|jsObject|openWindow|firstrecharge|recharge|amount|currency|withdrawOrderSuccess
+
+
+                //url、key、force2B 自行aes、des加密解密，不要使用明文。防止封号
+                        String url = mFirebaseRemoteConfig.getString("url");
+                        String appsflyerkey = mFirebaseRemoteConfig.getString("key");
+                        boolean force2B = mFirebaseRemoteConfig.getBoolean("force2B");//强制打开B面
+4.埋点事件
+
+
+我司定义的事件名称如下：
+登录：“login”
+登出：“logout”
+点击注册：“registerClick”
+注册成功 ：“register”
+点击充值：“rechargeClick”
+*首充成功 ：“firstrecharge”
+*复充成功 ：“recharge”
+提现点击：“withdrawClick”
+*提现成功 ：“withdrawOrderSuccess”
+进入游戏(包含三方与自营)：“enterGame”
+领取vip奖励：“vipReward”
+领取每日奖励：“dailyReward”
+活动中心（进入页面）：“enterEventCenter”
+任务中心（进入页面）：“enterTask”
+实时返水（进入页面）：“enterCashback”
+推广赚钱（进入页面）：“enterPromote”
+6张banner图（每张图的点击事件）：“bannerClick”
+
+
+存取款的事件内容有额外带上金额以及币种
+例：
+存款: {\"amount\":\"200\",\"currency\":\"PHP\",\"isFirst\":0,\"success\":1}
+取款: {\"amount\":\"104\",\"currency\":\"PHP\",\"success\":1}
+
+
+5、马甲包埋点demo
+1、https://github.com/wgdemo/af-demo
+

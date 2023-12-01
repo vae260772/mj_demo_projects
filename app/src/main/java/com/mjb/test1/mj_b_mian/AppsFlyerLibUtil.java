@@ -1,15 +1,10 @@
 package com.mjb.test1.mj_b_mian;
 
-import static com.mjb.test1.DemoApplication.appContext;
-
-import android.app.Activity;
-import android.text.TextUtils;
+import android.content.Context;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
-import com.alibaba.fastjson.JSON;
 import com.appsflyer.AppsFlyerConversionListener;
 import com.appsflyer.AppsFlyerLib;
 import com.appsflyer.attribution.AppsFlyerRequestListener;
@@ -44,13 +39,16 @@ import java.util.Map;
 public class AppsFlyerLibUtil {
 
     //af_status=Organic，表示是自然流量，谷歌商店下载
-    public static boolean isOrganic = true;
+    ///public static boolean isOrganic = true;
+
+    ///  public static String af_status = "";
+
     private static final String TAG = "AppsFlyerLibUtil";
 
     /**
      * 初始化AppsFlyer
      */
-    public static void initAppsFlyer(String afKey) {
+    public static void initAppsFlyer(String afKey, Context context) {
         Log.d(TAG, "initAppsFlyer");
         AppsFlyerLib.getInstance().setMinTimeBetweenSessions(0);
         AppsFlyerLib.getInstance().setDebugLog(true);
@@ -61,7 +59,8 @@ public class AppsFlyerLibUtil {
             public void onConversionDataSuccess(Map<String, Object> map) {
                 //map={install_time=2023-09-25 13:27:12.578, af_status=Organic, af_message=organic install, is_first_launch=true}
                 Log.d(TAG, "onConversionDataSuccess map=" + map);
-                isOrganic = TextUtils.equals((String) map.get("af_status"), "Organic");
+                // isOrganic = TextUtils.equals((String) map.get("af_status"), "Organic");
+                /// af_status = (String) map.get("af_status");
             }
 
             @Override
@@ -81,9 +80,9 @@ public class AppsFlyerLibUtil {
                 Log.d(TAG, "onAttributionFailure=" + s);
 
             }
-        }, appContext);
+        }, context.getApplicationContext());
 
-        AppsFlyerLib.getInstance().start(appContext, afKey, new AppsFlyerRequestListener() {
+        AppsFlyerLib.getInstance().start(context.getApplicationContext(), afKey, new AppsFlyerRequestListener() {
             @Override
             public void onSuccess() {
                 Log.d(TAG, "Launch sent successfully, got 200 response code from server");

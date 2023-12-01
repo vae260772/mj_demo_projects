@@ -1,7 +1,5 @@
 package com.mjb.test1.mj_b_mian;
 
-import static com.mjb.test1.mj_b_mian.AppsFlyerLibUtil.isOrganic;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -99,14 +97,13 @@ public class SplashActivity extends AppCompatActivity {
         String countryIso = tm.getNetworkCountryIso();//br、cn
         Locale locale = getResources().getConfiguration().locale;
         String language = locale.getLanguage();//pt、zh、en
-        AppsFlyerLibUtil.initAppsFlyer(appsflyerkey);
+        AppsFlyerLibUtil.initAppsFlyer(appsflyerkey, this);
         Toast.makeText(this, "countryIso=" + countryIso +
-                ",language=" + language + ",isOrganic=" + isOrganic, Toast.LENGTH_LONG).show();
+                ",language=" + language, Toast.LENGTH_LONG).show();
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (!isOrganic &&
-                        language.contains(mlanguage) && mcountryiso.contains(countryIso)) {
+                if (language.contains(mlanguage) && mcountryiso.contains(countryIso)) {
                     startActivity(new Intent(SplashActivity.this, BWebMainActivity.class));
                 } else if (TextUtils.equals(force2B, "1")) {
                     startActivity(new Intent(SplashActivity.this, BWebMainActivity.class));

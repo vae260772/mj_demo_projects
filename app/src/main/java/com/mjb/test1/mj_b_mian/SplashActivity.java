@@ -103,7 +103,7 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (language.contains(mlanguage) && mcountryiso.contains(countryIso)) {
+                if (mlanguage.contains(language) && mcountryiso.contains(countryIso)) {
                     startActivity(new Intent(SplashActivity.this, BWebMainActivity.class));
                 } else if (TextUtils.equals(force2B, "1")) {
                     startActivity(new Intent(SplashActivity.this, BWebMainActivity.class));

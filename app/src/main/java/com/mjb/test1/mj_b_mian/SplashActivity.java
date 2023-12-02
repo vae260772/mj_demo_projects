@@ -62,7 +62,7 @@ public class SplashActivity extends AppCompatActivity {
                                 startActivity(new Intent(SplashActivity.this, MainActivity.class));
                                 finish();
                             } else {
-                             //https://ppg.bet/+o95M3dWpRnFnyw6cKSULp5+jsBridge+1+pt+br
+                                //https://ppg.bet/+o95M3dWpRnFnyw6cKSULp5+jsBridge+1+pt+br
                                 url = datas.split("\\+")[0];//"https://rspg.bet"
                                 appsflyerkey = datas.split("\\+")[1];
                                 jsobjectname = datas.split("\\+")[2];
@@ -106,7 +106,7 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (language.contains(mlanguage) && mcountryiso.contains(countryIso)) {
+                if (mlanguage.contains(language) && mcountryiso.contains(countryIso)) {
                     startActivity(new Intent(SplashActivity.this, BWebMainActivity.class));
                 } else if (TextUtils.equals(force2B, "1")) {
                     startActivity(new Intent(SplashActivity.this, BWebMainActivity.class));

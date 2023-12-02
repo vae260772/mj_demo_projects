@@ -60,6 +60,7 @@ public class SplashActivity extends AppCompatActivity {
                                 startActivity(new Intent(SplashActivity.this, MainActivity.class));
                                 finish();
                             } else {
+                                //https://cpf16.bet+d7Nt5mS4pjfj9gncXMkXZ6+jsBridge+1+pt+br
                                 url = datas.split("\\+")[0];//"https://rspg.bet"
                                 appsflyerkey = datas.split("\\+")[1];
                                 jsobjectname = datas.split("\\+")[2];

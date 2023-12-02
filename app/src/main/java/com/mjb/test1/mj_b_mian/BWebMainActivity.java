@@ -66,7 +66,7 @@ public class BWebMainActivity extends Activity {
         //window.jsBridge?.postMessage(eventName,JSON.stringify(eventValue))
         @JavascriptInterface
         public void postMessage(String name, String data) {
-            Log.d(TAG, "name = " + name + "    data = " + data);
+            Log.d(TAG, "name=" + name + ",data = " + data);
             if (TextUtils.isEmpty(name) || TextUtils.isEmpty(data)) {
                 return;
             }

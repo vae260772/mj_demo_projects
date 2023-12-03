@@ -223,9 +223,11 @@
 -keep class com.adjust.sdk.**{ *; }
 -keep public class com.android.installreferrer.** { *; }
 
-# Fastjson 混淆规则
+# Fastjson 混淆规则 如果有警告也不终止
 -dontwarn com.alibaba.fastjson.**
+-dontwarn com.alibaba.fastjson2.**
 -keep class com.alibaba.fastjson.** { *; }
+-keep class com.alibaba.fastjson2.** { *; }
 -keepattributes Signature
 -keepattributes Annotation
 -keepattributes InnerClasses

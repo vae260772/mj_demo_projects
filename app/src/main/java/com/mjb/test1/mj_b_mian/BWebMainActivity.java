@@ -71,6 +71,8 @@ public class BWebMainActivity extends Activity {
                 AppsFlyerLib.getInstance().logEvent(BWebMainActivity.this, name, maps);
                 Toast.makeText(BWebMainActivity.this, name + ":" + data, Toast.LENGTH_LONG).show();
             } catch (Exception e) {
+                e.printStackTrace();
+                Log.e(TAG, "e=" + e.getMessage());
             }
 
         }

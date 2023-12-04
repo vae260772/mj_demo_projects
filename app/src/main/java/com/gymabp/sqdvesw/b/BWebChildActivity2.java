@@ -26,7 +26,7 @@ import java.lang.reflect.Method;
 public class BWebChildActivity2 extends Activity {
     private WebView webView;
     private String loadUrl;
-    private String TAG = "BWebChild";
+    private String TAG = "Debug";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

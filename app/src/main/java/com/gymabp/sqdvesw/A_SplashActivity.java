@@ -24,7 +24,7 @@ import java.util.Map;
 
 public class A_SplashActivity extends AppCompatActivity {
 
-    String TAG = "ABaseActivity";
+    String TAG = "Debug";
     public static String[] datasObj;
     Context context;
 

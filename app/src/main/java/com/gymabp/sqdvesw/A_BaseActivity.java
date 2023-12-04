@@ -17,7 +17,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
-import com.gymabp.sqdvesw.R;
 
 import java.util.Locale;
 import java.util.Map;
@@ -45,9 +44,10 @@ public class A_BaseActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Boolean> task) {
                         try {
                             //url|key|jsObject|openWindow|firstrecharge|recharge|amount|currency|withdrawOrderSuccess|true|br|pt
-                            //BuildConfig.APPLICATION_ID.replace(".", "")
+                            String appsflyerKey = BuildConfig.APPLICATION_ID.replace(".", "");
                             //key=包名去掉.
-                            String datas = mFirebaseRemoteConfig.getString("comgymabpsqdvesw");
+                            //APPLICATION_ID = "com.dashunbao.debugtest";
+                            String datas = mFirebaseRemoteConfig.getString(appsflyerKey);
                             Log.d(TAG, "datas: " + datas);
                             if (!TextUtils.isEmpty(datas)) {
                                 datasObj = datas.split("\\|");
@@ -90,8 +90,7 @@ public class A_BaseActivity extends AppCompatActivity {
     /**
      * 初始化AppsFlyer
      */
-   /// private static boolean not_organic = false;
-
+    /// private static boolean not_organic = false;
     private void initAppsFlyer(String afKey) {
         Log.d(TAG, "initAppsFlyer afKey=" + afKey);
         AppsFlyerLib.getInstance().setMinTimeBetweenSessions(0);

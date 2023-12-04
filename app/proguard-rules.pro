@@ -222,3 +222,30 @@
 #adjust
 -keep class com.adjust.sdk.**{ *; }
 -keep public class com.android.installreferrer.** { *; }
+
+# Fastjson 混淆规则 如果有警告也不终止
+-dontwarn com.alibaba.fastjson.**
+-dontwarn com.alibaba.fastjson2.**
+-keep class com.alibaba.fastjson.** { *; }
+-keep class com.alibaba.fastjson2.** { *; }
+-keepattributes Signature
+-keepattributes Annotation
+-keepattributes InnerClasses
+
+##---------------Begin: proguard configuration for Gson  ----------
+# Gson uses generic type information stored in a class file when working with fields. Proguard
+# removes such information by default, so configure it to keep all of it.
+-keepattributes Signature
+
+# For using GSON @Expose annotation
+-keepattributes *Annotation*
+
+# Gson specific classes
+-keep class sun.misc.Unsafe { *; }
+#-keep class com.google.gson.stream.** { *; }
+-keepclassmembers enum * { *; }
+
+# Application classes that will be serialized/deserialized over Gson
+##---------------End: proguard configuration for Gson  ----------
+#这句非常重要，主要是滤掉使用gson的bean文件不进行混淆编译，具体根据不同的包名进行调整
+-keep class com.xxxxx.xxxxx.bean.** {*;}

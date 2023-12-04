@@ -83,6 +83,13 @@ dependencies {
 
 
     implementation 'com.alibaba:fastjson:2.0.23'
+    /**
+     * release 混淆
+     * -dontwarn com.alibaba.fastjson.**
+     -dontwarn com.alibaba.fastjson2.**
+     -keep class com.alibaba.fastjson.** { *; }
+     -keep class com.alibaba.fastjson2.** { *; }
+     */
     implementation 'com.appsflyer:af-android-sdk:6.9.0'
     implementation "com.android.installreferrer:installreferrer:2.2"
 

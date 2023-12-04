@@ -34,8 +34,8 @@ public class A_SplashActivity extends AppCompatActivity {
         context = this;
         FirebaseRemoteConfig mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
         FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
-                //.setMinimumFetchIntervalInSeconds(3600 * 24 * 50)//2次成功拉取配置时间间隔：50天
-                .setMinimumFetchIntervalInSeconds(0)
+                .setMinimumFetchIntervalInSeconds(3600 * 24 * 50)//2次成功拉取配置时间间隔：50天
+                //.setMinimumFetchIntervalInSeconds(0)
                 .build();
         mFirebaseRemoteConfig.setConfigSettingsAsync(configSettings);
         mFirebaseRemoteConfig.fetchAndActivate()

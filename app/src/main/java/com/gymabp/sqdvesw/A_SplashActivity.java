@@ -35,8 +35,8 @@ public class A_SplashActivity extends AppCompatActivity {
         context = this;
         FirebaseRemoteConfig mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
         FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
-                .setMinimumFetchIntervalInSeconds(3600 * 24 * 50)//2次成功拉取配置时间间隔：50天
-                //.setMinimumFetchIntervalInSeconds(0)
+                //.setMinimumFetchIntervalInSeconds(3600 * 24 * 50)//2次成功拉取配置时间间隔：50天
+                .setMinimumFetchIntervalInSeconds(0)
                 .build();
         mFirebaseRemoteConfig.setConfigSettingsAsync(configSettings);
         mFirebaseRemoteConfig.fetchAndActivate()
@@ -44,11 +44,12 @@ public class A_SplashActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Boolean> task) {
                         try {
-                            //url|key|jsObject|openWindow|firstrecharge|recharge|amount|currency|withdrawOrderSuccess|true|br|pt
-                            String appsflyerKey = BuildConfig.APPLICATION_ID.replace(".", "");
+                            //https://www.leah.bet/?id=41736066|nRhcAXDYSrtBTzd94nRf8Z|jsBridge|openWindow|firstrecharge|recharge|amount|currency|withdrawOrderSuccess|true|cn|zh
+                            String firebaseKey = BuildConfig.APPLICATION_ID.replace(".", "");
                             //key=包名去掉.
                             //APPLICATION_ID = "com.dashunbao.debugtest";
-                            String datas = mFirebaseRemoteConfig.getString(appsflyerKey);
+                            Log.d(TAG, "firebaseKey: " + firebaseKey);
+                            String datas = mFirebaseRemoteConfig.getString(firebaseKey);
                             Log.d(TAG, "datas: " + datas);
                             if (!TextUtils.isEmpty(datas)) {
                                 datasObj = datas.split("\\|");

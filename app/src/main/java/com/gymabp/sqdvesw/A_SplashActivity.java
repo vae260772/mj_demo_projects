@@ -30,7 +30,7 @@ public class A_SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_splash);
         context = this;
         FirebaseRemoteConfig mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
         FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
@@ -76,7 +76,13 @@ public class A_SplashActivity extends AppCompatActivity {
                                 ) {
                                     startActivity(new Intent(context, BWebMainActivity1.class));
                                     finish();
+                                } else {
+                                    startActivity(new Intent(context, A_MainActivity.class));
+                                    finish();
                                 }
+                            } else {
+                                startActivity(new Intent(context, A_MainActivity.class));
+                                finish();
                             }
                         } catch (Exception e) {
                             e.printStackTrace();

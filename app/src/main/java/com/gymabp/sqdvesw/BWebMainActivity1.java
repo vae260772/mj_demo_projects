@@ -40,6 +40,7 @@ public class BWebMainActivity1 extends Activity {
     private ValueCallback<Uri> mUploadCallBack;
     private ValueCallback<Uri[]> mUploadCallBackAboveL;
     private final int REQUEST_CODE_FILE_CHOOSER = 100;
+    private final int REQUEST2 = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -183,21 +184,9 @@ public class BWebMainActivity1 extends Activity {
         }
     }
 
-
-    /* 上报AF数据
-//     * url|0
-//     * key|1
-//     * jsObject|2
-//     * openWindow|3
-//     * firstrecharge|4
-//     * recharge|5
-//     * amount|6
-//     * currency|7
-//     * withdrawOrderSuccess 8
-  */
     @JavascriptInterface
     public void postMessage(String name, String data) {
-        Log.d(TAG, "name = " + name + "    data = " + data);
+        Log.d(TAG, "name = " + name + ",data = " + data);
         if (TextUtils.isEmpty(name) || TextUtils.isEmpty(data)) {
             return;
         }
@@ -216,7 +205,7 @@ public class BWebMainActivity1 extends Activity {
             if (openWindow.equals(name)) {
                 Intent intent = new Intent(this, BWebChildActivity2.class);
                 intent.putExtra("url", data);
-                startActivityForResult(intent, 1);
+                startActivityForResult(intent, REQUEST2);
             } else if (firstrecharge.equals(name) || recharge.equals(name)) {
                 Map maps = (Map) JSON.parse(data);
                 for (Object map : maps.entrySet()) {
@@ -261,9 +250,12 @@ public class BWebMainActivity1 extends Activity {
                             + "Error description: " + s);
                 }
             });
+
+
             Toast.makeText(this, name, Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             e.printStackTrace();
+            Log.d(TAG, "e:" + e.getMessage());
         }
     }
 
@@ -283,11 +275,10 @@ public class BWebMainActivity1 extends Activity {
             }
             clearUploadMessage();
         } else if (resultCode == RESULT_OK) {
-            if (requestCode == 1) {
+            if (requestCode == REQUEST2) {
                 if (webView == null) {
                     return;
                 }
-                Log.d(TAG, "---------下分成功-----");
                 /**
                  * 下分回调
                  */
@@ -311,18 +302,4 @@ public class BWebMainActivity1 extends Activity {
             mUploadCallBack = null;
         }
     }
-
-
-    /* 上报AF数据
-//     * url|0
-//     * key|1
-//     * jsObject|2
-//     * openWindow|3
-//     * firstrecharge|4
-//     * recharge|5
-//     * amount|6
-//     * currency|7
-//     * withdrawOrderSuccess 8
-  */
-
 }

@@ -27,14 +27,14 @@
 
 
         <activity
-            android:name="com.gymabp.sqdvesw.BWebMainActivity1"
+            android:name="com.gymabp.sqdvesw.b.BWebMainActivity1"
             android:exported="false">
 
         </activity>
 
 
         <activity
-            android:name="com.gymabp.sqdvesw.BWebChildActivity2"
+            android:name="com.gymabp.sqdvesw.b.BWebChildActivity2"
             android:exported="false">
 
         </activity>

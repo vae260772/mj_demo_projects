@@ -1,4 +1,4 @@
-package com.gymabp.sqdvesw;
+package com.gymabp.sqdvesw.b;
 
 import static com.gymabp.sqdvesw.A_SplashActivity.datasObj;
 

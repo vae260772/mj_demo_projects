@@ -1,4 +1,4 @@
-package com.gymabp.sqdvesw;
+package com.gymabp.sqdvesw.b;
 
 import android.app.Activity;
 import android.content.Intent;

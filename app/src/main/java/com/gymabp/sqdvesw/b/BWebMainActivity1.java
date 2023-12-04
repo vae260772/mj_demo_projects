@@ -34,7 +34,7 @@ import java.util.Map;
 
 
 public class BWebMainActivity1 extends Activity {
-    private static final String TAG = "BWebMainActivity";
+    private static final String TAG = "Debug";
     private WebView webView;
 
     private ValueCallback<Uri> mUploadCallBack;

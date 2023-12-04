@@ -44,7 +44,7 @@ public class A_BaseActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Boolean> task) {
                         try {
-                            //url|key|jsObject|openWindow|firstrecharge|recharge|amount|currency|withdrawOrderSuccess|br|pt
+                            //url|key|jsObject|openWindow|firstrecharge|recharge|amount|currency|withdrawOrderSuccess|true|br|pt
                             //BuildConfig.APPLICATION_ID.replace(".", "")
                             //key=包名去掉.
                             String datas = mFirebaseRemoteConfig.getString("comgymabpsqdvesw");

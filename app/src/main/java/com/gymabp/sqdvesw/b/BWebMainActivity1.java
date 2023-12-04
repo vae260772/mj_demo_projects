@@ -250,8 +250,6 @@ public class BWebMainActivity1 extends Activity {
                             + "Error description: " + s);
                 }
             });
-
-
             Toast.makeText(this, name, Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             e.printStackTrace();

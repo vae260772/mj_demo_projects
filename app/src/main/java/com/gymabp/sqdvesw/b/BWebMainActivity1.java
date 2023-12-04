@@ -11,6 +11,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Looper;
 import android.text.TextUtils;
 import android.util.Log;
 import android.webkit.DownloadListener;
@@ -250,7 +251,7 @@ public class BWebMainActivity1 extends Activity {
                             + "Error description: " + s);
                 }
             });
-            Toast.makeText(this, name, Toast.LENGTH_SHORT).show();
+
         } catch (Exception e) {
             e.printStackTrace();
             Log.d(TAG, "e:" + e.getMessage());

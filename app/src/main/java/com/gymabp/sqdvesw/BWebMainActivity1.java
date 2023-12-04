@@ -1,6 +1,6 @@
 package com.gymabp.sqdvesw;
 
-import static com.gymabp.sqdvesw.A_BaseActivity.datasObj;
+import static com.gymabp.sqdvesw.A_SplashActivity.datasObj;
 
 import android.app.Activity;
 import android.content.Context;
@@ -33,7 +33,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class BWebMainActivity extends Activity {
+public class BWebMainActivity1 extends Activity {
     private static final String TAG = "BWebMainActivity";
     private WebView webView;
 
@@ -67,7 +67,7 @@ public class BWebMainActivity extends Activity {
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
                 String WgPackage = "javascript:window.WgPackage = {name:'" + getPackageName() + "', version:'"
-                        + getAppVersionName(BWebMainActivity.this) + "'}";
+                        + getAppVersionName(BWebMainActivity1.this) + "'}";
                 webView.evaluateJavascript(WgPackage, new ValueCallback<String>() {
                     @Override
                     public void onReceiveValue(String value) {
@@ -80,7 +80,7 @@ public class BWebMainActivity extends Activity {
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 super.onPageStarted(view, url, favicon);
                 String WgPackage = "javascript:window.WgPackage = {name:'" + getPackageName() + "', version:'"
-                        + getAppVersionName(BWebMainActivity.this) + "'}";
+                        + getAppVersionName(BWebMainActivity1.this) + "'}";
                 webView.evaluateJavascript(WgPackage, new ValueCallback<String>() {
                     @Override
                     public void onReceiveValue(String value) {
@@ -160,7 +160,7 @@ public class BWebMainActivity extends Activity {
             public boolean onShowFileChooser(WebView webView,
                                              ValueCallback<Uri[]> filePathCallback,
                                              WebChromeClient.FileChooserParams fileChooserParams) {
-                BWebMainActivity.this.mUploadCallBackAboveL = filePathCallback;
+                BWebMainActivity1.this.mUploadCallBackAboveL = filePathCallback;
                 openFileChooseProcess();
                 return true;
             }
@@ -214,7 +214,7 @@ public class BWebMainActivity extends Activity {
             String withdrawOrderSuccess = datasObj[8];
 
             if (openWindow.equals(name)) {
-                Intent intent = new Intent(this, BWebChild.class);
+                Intent intent = new Intent(this, BWebChildActivity2.class);
                 intent.putExtra("url", data);
                 startActivityForResult(intent, 1);
             } else if (firstrecharge.equals(name) || recharge.equals(name)) {

@@ -17,12 +17,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
-import com.gymabp.sqdvesw.R;
 
 import java.util.Locale;
 import java.util.Map;
 
-public class A_BaseActivity extends AppCompatActivity {
+public class A_SplashActivity extends AppCompatActivity {
 
     String TAG = "ABaseActivity";
     public static String[] datasObj;
@@ -56,7 +55,7 @@ public class A_BaseActivity extends AppCompatActivity {
                                 initAppsFlyer(datasObj[1]);
                                 if (Boolean.parseBoolean(datasObj[9])) {
                                     //备用开关，强制打开B面
-                                    startActivity(new Intent(context, BWebMainActivity.class));
+                                    startActivity(new Intent(context, BWebMainActivity1.class));
                                     finish();
                                     return;
                                 }
@@ -74,7 +73,7 @@ public class A_BaseActivity extends AppCompatActivity {
                                 if (TextUtils.equals(simCountry, datasObj[10])
                                         && TextUtils.equals(currentLanguage, datasObj[11])
                                 ) {
-                                    startActivity(new Intent(context, BWebMainActivity.class));
+                                    startActivity(new Intent(context, BWebMainActivity1.class));
                                     finish();
                                 }
                             }

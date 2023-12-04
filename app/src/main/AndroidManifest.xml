@@ -11,7 +11,7 @@
         android:theme="@style/MainTheme">
 
         <activity
-            android:name="com.gymabp.sqdvesw.A_BaseActivity"
+            android:name="com.gymabp.sqdvesw.A_SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,14 +22,14 @@
 
 
         <activity
-            android:name="com.gymabp.sqdvesw.BWebMainActivity"
+            android:name="com.gymabp.sqdvesw.BWebMainActivity1"
             android:exported="false">
 
         </activity>
 
 
         <activity
-            android:name="com.gymabp.sqdvesw.BWebChild"
+            android:name="com.gymabp.sqdvesw.BWebChildActivity2"
             android:exported="false">
 
         </activity>

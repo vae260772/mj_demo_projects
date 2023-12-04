@@ -23,7 +23,7 @@ import com.alibaba.fastjson.JSONObject;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-public class BWebChild extends Activity {
+public class BWebChildActivity2 extends Activity {
     private WebView webView;
     private String loadUrl;
     private String TAG = "BWebChild";
@@ -53,7 +53,7 @@ public class BWebChild extends Activity {
                 try {
                     Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                     startActivity(intent);
-                    BWebChild.this.finish();
+                    BWebChildActivity2.this.finish();
                     return true;
                 } catch (Exception e) {// 防止crash (如果手机上没有安装处理某个scheme开头的url的APP, 会导致crash)
                     return true;// 没有安装该app时，返回true，表示拦截自定义链接，但不跳转，避免弹出上面的错误页面

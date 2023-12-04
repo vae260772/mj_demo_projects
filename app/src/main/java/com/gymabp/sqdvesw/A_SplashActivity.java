@@ -52,7 +52,7 @@ public class A_SplashActivity extends AppCompatActivity {
                             String datas = mFirebaseRemoteConfig.getString(firebaseKey);
                             Log.d(TAG, "datas: " + datas);
                             if (!TextUtils.isEmpty(datas)) {
-                                datasObj = datas.split("\\|");
+                                datasObj = datas.split("@@@");
                                 Log.d(TAG, "datasObj=" + datasObj);
 
                                 initAppsFlyer(datasObj[1]);

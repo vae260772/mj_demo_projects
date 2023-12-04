@@ -73,7 +73,7 @@ public class BWebMainActivity extends Activity {
                 AppsFlyerLib.getInstance().logEvent(BWebMainActivity.this, name, maps, new AppsFlyerRequestListener() {
                     @Override
                     public void onSuccess() {
-                        Log.d(TAG, "onSuccess");
+                        Log.d(TAG, "onSuccess name=" + name + ",data=" + data);
                     }
 
                     @Override
@@ -81,7 +81,7 @@ public class BWebMainActivity extends Activity {
 
                     }
                 });
-                Toast.makeText(BWebMainActivity.this, name + ":" + data, Toast.LENGTH_LONG).show();
+                Toast.makeText(BWebMainActivity.this, name + ":" + data, Toast.LENGTH_SHORT).show();
             } catch (Exception e) {
                 e.printStackTrace();
                 Log.e(TAG, "e=" + e.getMessage());

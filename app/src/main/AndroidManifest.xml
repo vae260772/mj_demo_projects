@@ -11,7 +11,7 @@
         android:theme="@style/MainTheme">
 
         <activity
-            android:name=".mj_b_mian.SplashActivity"
+            android:name="com.dashunbao.debugtest.a.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,13 +22,13 @@
 
 
         <activity
-            android:name=".MainActivity"
+            android:name="com.dashunbao.debugtest.a.MainActivity"
             android:exported="false">
         </activity>
 
 
         <activity
-            android:name=".mj_b_mian.BWebMainActivity"
+            android:name="com.dashunbao.debugtest.b.BWebMainActivity"
             android:exported="false">
 
         </activity>

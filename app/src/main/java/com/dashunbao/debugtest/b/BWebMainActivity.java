@@ -1,4 +1,4 @@
-package com.mjb.test1.mj_b_mian;
+package com.dashunbao.debugtest.b;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -13,12 +13,14 @@ import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.appsflyer.AppsFlyerLib;
+import com.appsflyer.attribution.AppsFlyerRequestListener;
+import com.dashunbao.debugtest.a.SplashActivity;
 
 import java.util.Map;
 
 
 public class BWebMainActivity extends Activity {
-    private static final String TAG = "BWebMainActivity";
+    private static final String TAG = "Debug";
     private WebView webView;
 
     @Override
@@ -68,7 +70,17 @@ public class BWebMainActivity extends Activity {
             Log.d(TAG, "name = " + name + "    data = " + data);
             try {
                 Map maps = (Map) JSON.parse(data);
-                AppsFlyerLib.getInstance().logEvent(BWebMainActivity.this, name, maps);
+                AppsFlyerLib.getInstance().logEvent(BWebMainActivity.this, name, maps, new AppsFlyerRequestListener() {
+                    @Override
+                    public void onSuccess() {
+                        Log.d(TAG, "onSuccess");
+                    }
+
+                    @Override
+                    public void onError(int i, String s) {
+
+                    }
+                });
                 Toast.makeText(BWebMainActivity.this, name + ":" + data, Toast.LENGTH_LONG).show();
             } catch (Exception e) {
                 e.printStackTrace();

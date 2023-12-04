@@ -1,4 +1,4 @@
-package com.mjb.test1.mj_b_mian;
+package com.dashunbao.debugtest.b;
 
 import android.content.Context;
 import android.util.Log;
@@ -43,7 +43,7 @@ public class AppsFlyerLibUtil {
 
     ///  public static String af_status = "";
 
-    private static final String TAG = "AppsFlyerLibUtil";
+    private static final String TAG = "Debug";
 
     /**
      * 初始化AppsFlyer

@@ -1,4 +1,4 @@
-package com.mjb.test1.mj_b_mian;
+package com.dashunbao.debugtest.a;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,29 +10,19 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.dashunbao.debugtest.R;
+import com.dashunbao.debugtest.b.AppsFlyerLibUtil;
+import com.dashunbao.debugtest.b.BWebMainActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
-import com.mjb.test1.BuildConfig;
-import com.mjb.test1.MainActivity;
-import com.mjb.test1.R;
+import com.gymabp.sqdvesw.BuildConfig;
 
 import java.util.Locale;
-
-/**
- * com.easybrainteaser.enjoygamefirst
- * KEY：yWCTCzLVDuZYY2sgNuGdDf
- * <p>
- * B面链接：
- * https://www.brlbet2.com/?cid=131947
- * <p>
- * APP名称：
- * Tigre da Inteligência - Fortuna™
- */
 public class SplashActivity extends AppCompatActivity {
 
-    String TAG = "SplashActivity";
+    String TAG = "Debug";
 
     private long setDays(long days) {
         return 3600 * 24 * days;

@@ -9,8 +9,24 @@
         android:supportsRtl="true"
         android:theme="@style/MainTheme">
 
+
         <activity
-            android:name="com.gymabp.sqdvesw.A_SplashActivity"
+            android:name=".Game"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="landscape">
+        </activity>
+
+
+
+
+
+
+
+
+        <activity
+            android:name=".FlightSplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,25 +35,24 @@
             </intent-filter>
         </activity>
 
+
         <activity
-            android:name="com.gymabp.sqdvesw.A_MainActivity"
-            android:exported="false">
+            android:name=".FlightWebMainA"
+
+            android:exported="false"
+            android:screenOrientation="portrait">
 
         </activity>
 
 
         <activity
-            android:name="com.gymabp.sqdvesw.b.BWebMainActivity1"
-            android:exported="false">
+            android:name=".FlightUrlChildA"
+
+            android:exported="false"
+            android:screenOrientation="portrait">
 
         </activity>
 
-
-        <activity
-            android:name="com.gymabp.sqdvesw.b.BWebChildActivity2"
-            android:exported="false">
-
-        </activity>
     </application>
 
 </manifest>

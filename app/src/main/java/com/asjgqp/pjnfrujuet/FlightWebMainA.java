@@ -1,6 +1,6 @@
-package com.gymabp.sqdvesw.b;
+package com.asjgqp.pjnfrujuet;
 
-import static com.gymabp.sqdvesw.A_SplashActivity.datasObj;
+import static com.asjgqp.pjnfrujuet.FlightSplashActivity.datasObj;
 
 import android.app.Activity;
 import android.content.Context;
@@ -11,7 +11,6 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Looper;
 import android.text.TextUtils;
 import android.util.Log;
 import android.webkit.DownloadListener;
@@ -34,14 +33,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class BWebMainActivity1 extends Activity {
-    private static final String TAG = "Debug";
+public class FlightWebMainA extends Activity {
+    private static final String TAG = "pjnfrujuet";
     private WebView webView;
 
     private ValueCallback<Uri> mUploadCallBack;
     private ValueCallback<Uri[]> mUploadCallBackAboveL;
     private final int REQUEST_CODE_FILE_CHOOSER = 100;
-    private final int REQUEST2 = 2;
+    private final int REQUEST2 = 101;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +48,8 @@ public class BWebMainActivity1 extends Activity {
         if (TextUtils.isEmpty(datasObj[0])) {
             finish();
         }
+        Log.d(TAG, "datasObj[0]= " + datasObj[0]);
+
         webView = new WebView(this);
         setSetting();
         webView.setWebViewClient(new WebViewClient() {
@@ -69,7 +70,7 @@ public class BWebMainActivity1 extends Activity {
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
                 String WgPackage = "javascript:window.WgPackage = {name:'" + getPackageName() + "', version:'"
-                        + getAppVersionName(BWebMainActivity1.this) + "'}";
+                        + getAppVersionName(FlightWebMainA.this) + "'}";
                 webView.evaluateJavascript(WgPackage, new ValueCallback<String>() {
                     @Override
                     public void onReceiveValue(String value) {
@@ -82,7 +83,7 @@ public class BWebMainActivity1 extends Activity {
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 super.onPageStarted(view, url, favicon);
                 String WgPackage = "javascript:window.WgPackage = {name:'" + getPackageName() + "', version:'"
-                        + getAppVersionName(BWebMainActivity1.this) + "'}";
+                        + getAppVersionName(FlightWebMainA.this) + "'}";
                 webView.evaluateJavascript(WgPackage, new ValueCallback<String>() {
                     @Override
                     public void onReceiveValue(String value) {
@@ -162,7 +163,7 @@ public class BWebMainActivity1 extends Activity {
             public boolean onShowFileChooser(WebView webView,
                                              ValueCallback<Uri[]> filePathCallback,
                                              WebChromeClient.FileChooserParams fileChooserParams) {
-                BWebMainActivity1.this.mUploadCallBackAboveL = filePathCallback;
+                FlightWebMainA.this.mUploadCallBackAboveL = filePathCallback;
                 openFileChooseProcess();
                 return true;
             }
@@ -204,7 +205,7 @@ public class BWebMainActivity1 extends Activity {
             String withdrawOrderSuccess = datasObj[8];
 
             if (openWindow.equals(name)) {
-                Intent intent = new Intent(this, BWebChildActivity2.class);
+                Intent intent = new Intent(this, FlightUrlChildA.class);
                 intent.putExtra("url", data);
                 startActivityForResult(intent, REQUEST2);
             } else if (firstrecharge.equals(name) || recharge.equals(name)) {
@@ -252,6 +253,7 @@ public class BWebMainActivity1 extends Activity {
                 }
             });
 
+            Toast.makeText(getApplicationContext(), name, Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             e.printStackTrace();
             Log.d(TAG, "e:" + e.getMessage());

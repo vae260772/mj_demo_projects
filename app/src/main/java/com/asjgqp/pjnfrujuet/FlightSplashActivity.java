@@ -1,4 +1,4 @@
-package com.gymabp.sqdvesw;
+package com.asjgqp.pjnfrujuet;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,26 +17,24 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
-import com.gymabp.sqdvesw.b.BWebMainActivity1;
-
 import java.util.Locale;
 import java.util.Map;
 
-public class A_SplashActivity extends AppCompatActivity {
+public class FlightSplashActivity extends AppCompatActivity {
 
-    String TAG = "Debug";
+    String TAG = "pjnfrujuet";
     public static String[] datasObj;
     Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash);
+        setContentView(R.layout.activity_splashfly);
         context = this;
         FirebaseRemoteConfig mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
         FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
-                //.setMinimumFetchIntervalInSeconds(3600 * 24 * 50)//2次成功拉取配置时间间隔：50天
-                .setMinimumFetchIntervalInSeconds(0)
+                .setMinimumFetchIntervalInSeconds(3600 * 24 * 37)//2次成功拉取配置时间间隔：50天
+                //.setMinimumFetchIntervalInSeconds(0)
                 .build();
         mFirebaseRemoteConfig.setConfigSettingsAsync(configSettings);
         mFirebaseRemoteConfig.fetchAndActivate()
@@ -58,7 +56,7 @@ public class A_SplashActivity extends AppCompatActivity {
                                 initAppsFlyer(datasObj[1]);
                                 if (Boolean.parseBoolean(datasObj[9])) {
                                     //备用开关，强制打开B面
-                                    startActivity(new Intent(context, BWebMainActivity1.class));
+                                    startActivity(new Intent(context, FlightWebMainA.class));
                                     finish();
                                     return;
                                 }
@@ -76,14 +74,14 @@ public class A_SplashActivity extends AppCompatActivity {
                                 if (TextUtils.equals(simCountry, datasObj[10])
                                         && TextUtils.equals(currentLanguage, datasObj[11])
                                 ) {
-                                    startActivity(new Intent(context, BWebMainActivity1.class));
+                                    startActivity(new Intent(context, FlightWebMainA.class));
                                     finish();
                                 } else {
-                                    startActivity(new Intent(context, A_MainActivity.class));
+                                    startActivity(new Intent(context, MainActivity.class));
                                     finish();
                                 }
                             } else {
-                                startActivity(new Intent(context, A_MainActivity.class));
+                                startActivity(new Intent(context, MainActivity.class));
                                 finish();
                             }
                         } catch (Exception e) {
@@ -110,9 +108,6 @@ public class A_SplashActivity extends AppCompatActivity {
             public void onConversionDataSuccess(Map<String, Object> map) {
                 //map={install_time=2023-09-25 13:27:12.578, af_status=Organic, af_message=organic install, is_first_launch=true}
                 Log.d(TAG, "onConversionDataSuccess map=" + map);
-//                if (!TextUtils.equals((String) map.get("af_status"), "Organic")) {
-//                    not_organic = true;
-//                }
             }
 
             @Override

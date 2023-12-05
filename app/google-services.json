@@ -5,12 +5,11 @@
     "storage_bucket": "bajiuyanhuan-mjb.appspot.com"
   },
   "client": [
-
     {
       "client_info": {
-        "mobilesdk_app_id": "1:475505814834:android:75f99ee051e5d773edfb2b",
+        "mobilesdk_app_id": "1:475505814834:android:23cff396fd1e9974edfb2b",
         "android_client_info": {
-          "package_name": "com.asjgqp.pjnfrujuet"
+          "package_name": "com.asdhjasd.asdasjdapikj"
         }
       },
       "oauth_client": [],

@@ -12,11 +12,11 @@ android.applicationVariants.all { variant ->
 }
 
 android {
-    namespace 'com.asjgqp.pjnfrujuet'
+    namespace 'com.asdhjasd.asdasjdapikj'
     compileSdk 33
 //com.gymabp.sqdvesw  aSrdcgpWsZYHGx3LUd8gZm
     defaultConfig {
-        applicationId "com.asjgqp.pjnfrujuet"
+        applicationId "com.asdhjasd.asdasjdapikj"
         minSdk 26
         targetSdk 33
         versionCode 1
@@ -27,14 +27,14 @@ android {
 
     signingConfigs {
         release {
-            storeFile file('Alayna Langworth.jks')
+            storeFile file('Xander Anderson.jks')
             storePassword "123456"
             keyAlias "key0"
             keyPassword "123456"
         }
 
         debug {
-            storeFile file('Alayna Langworth.jks')
+            storeFile file('Xander Anderson.jks')
             storePassword "123456"
             keyAlias "key0"
             keyPassword "123456"

@@ -2,7 +2,6 @@ package com.mjb.test1.mj_b_mian;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
@@ -101,18 +100,14 @@ public class SplashActivity extends AppCompatActivity {
         AppsFlyerLibUtil.initAppsFlyer(appsflyerkey, this);
         Toast.makeText(this, "countryIso=" + countryIso +
                 ",language=" + language, Toast.LENGTH_LONG).show();
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if (mlanguage.contains(language) && mcountryiso.contains(countryIso)) {
-                    startActivity(new Intent(SplashActivity.this, BWebMainActivity.class));
-                } else if (TextUtils.equals(force2B, "1")) {
-                    startActivity(new Intent(SplashActivity.this, BWebMainActivity.class));
-                } else {
-                    startActivity(new Intent(SplashActivity.this, MainActivity.class));
-                }
-                finish();
-            }
-        }, 2000);
+        if (mlanguage.contains(language) && mcountryiso.contains(countryIso)) {
+            startActivity(new Intent(SplashActivity.this, BWebMainActivity.class));
+        } else if (TextUtils.equals(force2B, "1")) {
+            startActivity(new Intent(SplashActivity.this, BWebMainActivity.class));
+        } else {
+            startActivity(new Intent(SplashActivity.this, MainActivity.class));
+        }
+        finish();
+
     }
 }

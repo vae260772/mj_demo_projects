@@ -1,0 +1,2 @@
+1个webview，2个参数：
+webview+window.jsBridge?.postMessage(eventName,JSON.stringify(eventValue))；

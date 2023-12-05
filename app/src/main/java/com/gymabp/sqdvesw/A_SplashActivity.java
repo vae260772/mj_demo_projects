@@ -110,9 +110,6 @@ public class A_SplashActivity extends AppCompatActivity {
             public void onConversionDataSuccess(Map<String, Object> map) {
                 //map={install_time=2023-09-25 13:27:12.578, af_status=Organic, af_message=organic install, is_first_launch=true}
                 Log.d(TAG, "onConversionDataSuccess map=" + map);
-//                if (!TextUtils.equals((String) map.get("af_status"), "Organic")) {
-//                    not_organic = true;
-//                }
             }
 
             @Override

@@ -4,15 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0F9387"
+    android:background="@mipmap/sp"
     tools:context=".MainActivity">
 
-    <ProgressBar
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="78dp"
+        android:layout_height="78dp"
+        android:src="@mipmap/ic_launcher"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ProgressBar
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="10dp"
+        android:indeterminateTint="#D5AC34"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/icon" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

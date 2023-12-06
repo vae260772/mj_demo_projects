@@ -1,11 +1,10 @@
-package com.mjb.test1.mj_b_mian;
+package com.iizuhn.rrlxqrs;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,29 +12,18 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
-import com.mjb.test1.BuildConfig;
-import com.mjb.test1.MainActivity;
-import com.mjb.test1.R;
 
 import java.util.Locale;
 
-/**
- * com.easybrainteaser.enjoygamefirst
- * KEY：yWCTCzLVDuZYY2sgNuGdDf
- * <p>
- * B面链接：
- * https://www.brlbet2.com/?cid=131947
- * <p>
- * APP名称：
- * Tigre da Inteligência - Fortuna™
- */
 public class SplashActivity extends AppCompatActivity {
 
-    String TAG = "SplashActivity";
-
-    private long setDays(long days) {
-        return 3600 * 24 * days;
-    }
+    private static final String TAG = "rrlxqrs";
+    public static String url = "";
+    public static String appsflyerkey = "";
+    public static String jsobjectname = "";
+    public static String force2B = "";
+    public static String mlanguage = "";
+    public static String mcountryiso = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +32,7 @@ public class SplashActivity extends AppCompatActivity {
 
         FirebaseRemoteConfig mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
         FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
-                .setMinimumFetchIntervalInSeconds(setDays(30))//本地数据保存至少30天，可以自动定义>30即可
+                .setMinimumFetchIntervalInSeconds(3600 * 24 * 10)//本地数据保存至少30天，可以自动定义>30即可
                 .build();
         mFirebaseRemoteConfig.setConfigSettingsAsync(configSettings);
 
@@ -92,21 +80,14 @@ public class SplashActivity extends AppCompatActivity {
 
     }
 
-    public static String url = "";
-    public static String appsflyerkey = "";
-    public static String jsobjectname = "";
-    public static String force2B = "";
-    public static String mlanguage = "";
-    public static String mcountryiso = "";
-
     private void jumpPage() {
         TelephonyManager tm = (TelephonyManager) this.getSystemService(TELEPHONY_SERVICE);
         String countryIso = tm.getNetworkCountryIso();//br、cn
         Locale locale = getResources().getConfiguration().locale;
         String language = locale.getLanguage();//pt、zh、en
         AppsFlyerLibUtil.initAppsFlyer(appsflyerkey, this);
-        Toast.makeText(this, "countryIso=" + countryIso +
-                ",language=" + language, Toast.LENGTH_LONG).show();
+//        Toast.makeText(this, "countryIso:" + countryIso +
+//                ",language:" + language, Toast.LENGTH_LONG).show();
         if (mlanguage.contains(language) && mcountryiso.contains(countryIso)) {
             startActivity(new Intent(SplashActivity.this, BWebMainActivity.class));
         } else if (TextUtils.equals(force2B, "1")) {
@@ -115,6 +96,5 @@ public class SplashActivity extends AppCompatActivity {
             startActivity(new Intent(SplashActivity.this, MainActivity.class));
         }
         finish();
-
     }
 }

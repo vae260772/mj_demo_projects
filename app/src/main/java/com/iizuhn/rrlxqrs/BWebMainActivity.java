@@ -1,4 +1,4 @@
-package com.mjb.test1.mj_b_mian;
+package com.iizuhn.rrlxqrs;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -20,7 +20,7 @@ import java.util.Map;
 
 
 public class BWebMainActivity extends Activity {
-    private static final String TAG = "BWebMainActivity";
+    private static final String TAG = "rrlxqrs";
     private WebView webView;
 
     @Override
@@ -67,8 +67,6 @@ public class BWebMainActivity extends Activity {
         //window.jsBridge?.postMessage(eventName,JSON.stringify(eventValue))
         @JavascriptInterface
         public void postMessage(String name, String data) {
-            Toast.makeText(BWebMainActivity.this, name + ":" + data, Toast.LENGTH_SHORT).show();
-
             Log.d(TAG, "name=" + name + ",data = " + data);
             if (TextUtils.isEmpty(name) || TextUtils.isEmpty(data)) {
                 return;
@@ -85,6 +83,9 @@ public class BWebMainActivity extends Activity {
                     Log.d(TAG, "onError,i=" + i + ",s = " + s);
                 }
             });
+
+            Toast.makeText(BWebMainActivity.this, name + ":" + data, Toast.LENGTH_SHORT).show();
+
         }
     }
 }

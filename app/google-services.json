@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "299820447859",
-    "project_id": "gy888-mjb",
-    "storage_bucket": "gy888-mjb.appspot.com"
+    "project_number": "815772167726",
+    "project_id": "bee-mjb",
+    "storage_bucket": "bee-mjb.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:299820447859:android:9391ae2a620ea5d3349206",
+        "mobilesdk_app_id": "1:815772167726:android:cec707d9f50c90be6bf9bf",
         "android_client_info": {
-          "package_name": "com.gy888.mjb2.test"
+          "package_name": "com.iizuhn.rrlxqrs"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCb8GeKMWr45fjw5A3EWiaxe1124hPfUbk"
+          "current_key": "AIzaSyCNBZ2_Vznu6sCwsMIjzKt6EPZyryQq44o"
         }
       ],
       "services": {

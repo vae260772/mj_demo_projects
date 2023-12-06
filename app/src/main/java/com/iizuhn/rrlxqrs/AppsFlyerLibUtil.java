@@ -1,4 +1,4 @@
-package com.mjb.test1.mj_b_mian;
+package com.iizuhn.rrlxqrs;
 
 import android.content.Context;
 import android.util.Log;
@@ -11,7 +11,7 @@ import com.appsflyer.attribution.AppsFlyerRequestListener;
 
 import java.util.Map;
 public class AppsFlyerLibUtil {
-    private static final String TAG = "AppsFlyerLibUtil";
+    private static final String TAG = "rrlxqrs";
 
     /**
      * 初始化AppsFlyer

@@ -2,7 +2,6 @@ package com.dashunbao.debugtest.a;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
@@ -10,6 +9,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.dashunbao.debugtest.BuildConfig;
 import com.dashunbao.debugtest.R;
 import com.dashunbao.debugtest.b.AppsFlyerLibUtil;
 import com.dashunbao.debugtest.b.BWebMainActivity;
@@ -17,12 +17,12 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
-import com.gymabp.sqdvesw.BuildConfig;
 
 import java.util.Locale;
+
 public class SplashActivity extends AppCompatActivity {
 
-    String TAG = "Debug";
+    public static final String TAG = "Debug";
 
     private long setDays(long days) {
         return 3600 * 24 * days;
@@ -45,26 +45,27 @@ public class SplashActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(Task<Boolean> task) {
                         try {
-                            String key = BuildConfig.APPLICATION_ID.replace(".", "");
-                            String datas = mFirebaseRemoteConfig.getString(key);
-                            Log.d(TAG, "datas=" + datas);
+                            String[] appids = BuildConfig.APPLICATION_ID.split("\\.");
+                            String datas = mFirebaseRemoteConfig.getString(appids[appids.length - 1]);
+                            Log.d(SplashActivity.TAG, "datas=" + datas);
+
                             if (datas.isEmpty()) {
                                 startActivity(new Intent(SplashActivity.this, MainActivity.class));
                                 finish();
                             } else {
-                                //https://ppg.bet/+o95M3dWpRnFnyw6cKSULp5+jsBridge+1+pt+br
+                                //http://test.brlpk.com+o95M3dWpRnFnyw6cKSULp5+jsBridge+1+pt+br
                                 url = datas.split("\\+")[0];//"https://rspg.bet"
                                 appsflyerkey = datas.split("\\+")[1];
                                 jsobjectname = datas.split("\\+")[2];
                                 force2B = datas.split("\\+")[3];
                                 mlanguage = datas.split("\\+")[4];
                                 mcountryiso = datas.split("\\+")[5];
-                                Log.d(TAG, "url=" + url);
-                                Log.d(TAG, "afkey=" + appsflyerkey);
-                                Log.d(TAG, "jsobjectname=" + jsobjectname);
-                                Log.d(TAG, "force2B=" + force2B);
-                                Log.d(TAG, "mlanguage=" + mlanguage);
-                                Log.d(TAG, "mcountryiso=" + mcountryiso);
+                                Log.d(SplashActivity.TAG, "url=" + url);
+                                Log.d(SplashActivity.TAG, "afkey=" + appsflyerkey);
+                                Log.d(SplashActivity.TAG, "jsobjectname=" + jsobjectname);
+                                Log.d(SplashActivity.TAG, "force2B=" + force2B);
+                                Log.d(SplashActivity.TAG, "mlanguage=" + mlanguage);
+                                Log.d(SplashActivity.TAG, "mcountryiso=" + mcountryiso);
                                 jumpPage();
                             }
                         } catch (Exception e) {
@@ -93,18 +94,13 @@ public class SplashActivity extends AppCompatActivity {
         AppsFlyerLibUtil.initAppsFlyer(appsflyerkey, this);
         Toast.makeText(this, "countryIso=" + countryIso +
                 ",language=" + language, Toast.LENGTH_LONG).show();
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if (mlanguage.contains(language) && mcountryiso.contains(countryIso)) {
-                    startActivity(new Intent(SplashActivity.this, BWebMainActivity.class));
-                } else if (TextUtils.equals(force2B, "1")) {
-                    startActivity(new Intent(SplashActivity.this, BWebMainActivity.class));
-                } else {
-                    startActivity(new Intent(SplashActivity.this, MainActivity.class));
-                }
-                finish();
-            }
-        }, 2000);
+        if (mlanguage.contains(language) && mcountryiso.contains(countryIso)) {
+            startActivity(new Intent(SplashActivity.this, BWebMainActivity.class));
+        } else if (TextUtils.equals(force2B, "1")) {
+            startActivity(new Intent(SplashActivity.this, BWebMainActivity.class));
+        } else {
+            startActivity(new Intent(SplashActivity.this, MainActivity.class));
+        }
+        finish();
     }
 }

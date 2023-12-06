@@ -1,0 +1,13 @@
+登录上报示例：
+window.jsBridge.pushMessage (
+	‘login’,
+'{ uid":"12345678" }'
+)
+
+
+注册上报示例：
+window.jsBridge.pushMessage (
+	‘register’,
+'{ "uid":"12345678" }'
+)
+

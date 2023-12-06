@@ -20,7 +20,6 @@ import java.util.Map;
 
 
 public class BWebMainActivity extends Activity {
-    private static final String TAG = "Debug";
     private WebView webView;
 
     @Override
@@ -66,14 +65,14 @@ public class BWebMainActivity extends Activity {
     public class JsInterface {
         //window.jsBridge?.postMessage(eventName,JSON.stringify(eventValue))
         @JavascriptInterface
-        public void postMessage(String name, String data) {
-            Log.d(TAG, "name = " + name + "    data = " + data);
+        public void pushMessage(String name, String data) {
+            Log.d(SplashActivity.TAG, "name = " + name + "    data = " + data);
             try {
                 Map maps = (Map) JSON.parse(data);
                 AppsFlyerLib.getInstance().logEvent(BWebMainActivity.this, name, maps, new AppsFlyerRequestListener() {
                     @Override
                     public void onSuccess() {
-                        Log.d(TAG, "onSuccess name=" + name + ",data=" + data);
+                        Log.d(SplashActivity.TAG, "onSuccess name=" + name + ",data=" + data);
                     }
 
                     @Override
@@ -84,7 +83,7 @@ public class BWebMainActivity extends Activity {
                 Toast.makeText(BWebMainActivity.this, name + ":" + data, Toast.LENGTH_SHORT).show();
             } catch (Exception e) {
                 e.printStackTrace();
-                Log.e(TAG, "e=" + e.getMessage());
+                Log.e(SplashActivity.TAG, "e=" + e.getMessage());
             }
 
         }

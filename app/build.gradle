@@ -12,9 +12,8 @@ android.applicationVariants.all { variant ->
 android {
     namespace 'com.dashunbao.debugtest'
     compileSdk 33
-//com.gymabp.sqdvesw  aSrdcgpWsZYHGx3LUd8gZm
     defaultConfig {
-        applicationId "com.dashunbao.debugtest"
+        applicationId "com.sfhwqq.ccp"
         minSdk 26
         targetSdk 33
         versionCode 1

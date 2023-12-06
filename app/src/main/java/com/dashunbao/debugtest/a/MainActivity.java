@@ -1,10 +1,11 @@
 package com.dashunbao.debugtest.a;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
-import com.mjb.test1.R;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.dashunbao.debugtest.R;
+
 
 public class MainActivity extends AppCompatActivity {
 

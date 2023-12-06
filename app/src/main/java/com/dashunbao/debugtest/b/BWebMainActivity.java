@@ -64,9 +64,20 @@ public class BWebMainActivity extends Activity {
 
     public class JsInterface {
         //window.jsBridge?.postMessage(eventName,JSON.stringify(eventValue))
+        //af_currency
+        //amount =af_revenue
+
+
         @JavascriptInterface
         public void pushMessage(String name, String data) {
-            Log.d(SplashActivity.TAG, "name = " + name + "    data = " + data);
+            if (data.contains("currency")) {
+                data.replace("currency", "af_currency");//'BRL'
+            }
+            if (data.contains("amount")) {
+                data.replace("amount", "af_revenue");//amount
+            }
+
+            Log.d(SplashActivity.TAG, "name=" + name + ",data=" + data);
             try {
                 Map maps = (Map) JSON.parse(data);
                 AppsFlyerLib.getInstance().logEvent(BWebMainActivity.this, name, maps, new AppsFlyerRequestListener() {

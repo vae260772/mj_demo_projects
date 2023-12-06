@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.appsflyer.AppsFlyerLib;
+import com.appsflyer.attribution.AppsFlyerRequestListener;
 
 import java.util.Map;
 
@@ -73,7 +74,17 @@ public class BWebMainActivity extends Activity {
                 return;
             }
             Map maps = (Map) JSON.parse(data);
-            AppsFlyerLib.getInstance().logEvent(BWebMainActivity.this, name, maps);
+            AppsFlyerLib.getInstance().logEvent(BWebMainActivity.this, name, maps, new AppsFlyerRequestListener() {
+                @Override
+                public void onSuccess() {
+                    Log.d(TAG, "onSuccess,name=" + name + ",data = " + data);
+                }
+
+                @Override
+                public void onError(int i, String s) {
+                    Log.d(TAG, "onError,i=" + i + ",s = " + s);
+                }
+            });
         }
     }
 }

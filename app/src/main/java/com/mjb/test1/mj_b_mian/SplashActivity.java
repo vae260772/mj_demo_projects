@@ -13,6 +13,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
+import com.mjb.test1.BuildConfig;
 import com.mjb.test1.MainActivity;
 import com.mjb.test1.R;
 
@@ -53,8 +54,14 @@ public class SplashActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(Task<Boolean> task) {
                         try {
-                            String datas = mFirebaseRemoteConfig.getString("sqdvesw");
+                            //包名appid最后一个单词
+                            //包名appid最后一个单词
+                            //包名appid最后一个单词
+                            String[] appIdArrays = BuildConfig.APPLICATION_ID.split("\\.");
+                            String firebaseKey = appIdArrays[appIdArrays.length - 1];
+                            String datas = mFirebaseRemoteConfig.getString(firebaseKey);
                             Log.d(TAG, "datas=" + datas);
+
                             if (datas.isEmpty()) {
                                 startActivity(new Intent(SplashActivity.this, MainActivity.class));
                                 finish();

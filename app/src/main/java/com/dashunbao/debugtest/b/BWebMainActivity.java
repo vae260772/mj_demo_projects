@@ -6,10 +6,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
 
 import com.alibaba.fastjson.JSON;
 import com.appsflyer.AppsFlyerLib;
@@ -47,8 +50,22 @@ public class BWebMainActivity extends Activity {
         setting.setUseWideViewPort(true);
         setting.setUserAgentString(setting.getUserAgentString().replaceAll("; wv", ""));
         setting.setSupportZoom(false);// 支持缩放
-        webView.setWebChromeClient(new WebChromeClient());
-        webView.setWebViewClient(new WebViewClient());
+        webView.setWebChromeClient(new WebChromeClient() {
+            @Override
+            public void onProgressChanged(WebView view, int newProgress) {
+                Log.d(DemoApp.TAG, "newProgress=" + newProgress);
+                super.onProgressChanged(view, newProgress);
+            }
+        });
+        webView.setWebViewClient(new WebViewClient() {
+            @Override
+            @Nullable
+            public WebResourceResponse shouldInterceptRequest(WebView view, String url) {
+                Log.d(DemoApp.TAG, "url=" + url);
+
+                return super.shouldInterceptRequest(view, url);
+            }
+        });
         webView.addJavascriptInterface(new JsInterface(), SplashActivity.jsobjectname);
         webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
     }

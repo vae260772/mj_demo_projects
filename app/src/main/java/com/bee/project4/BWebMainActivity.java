@@ -1,4 +1,4 @@
-package com.sfhwqq.ccp.b;
+package com.bee.project4;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -17,8 +17,6 @@ import androidx.annotation.Nullable;
 import com.alibaba.fastjson.JSON;
 import com.appsflyer.AppsFlyerLib;
 import com.appsflyer.attribution.AppsFlyerRequestListener;
-import com.sfhwqq.ccp.a.SplashActivity;
-
 import java.util.Map;
 
 

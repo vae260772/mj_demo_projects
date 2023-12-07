@@ -1,4 +1,4 @@
-package com.sfhwqq.ccp.b;
+package com.bee.project4;
 
 import android.content.Context;
 import android.util.Log;
@@ -8,14 +8,12 @@ import androidx.annotation.NonNull;
 import com.appsflyer.AppsFlyerConversionListener;
 import com.appsflyer.AppsFlyerLib;
 import com.appsflyer.attribution.AppsFlyerRequestListener;
-import com.sfhwqq.ccp.a.SplashActivity;
-
 import java.util.Map;
 
 public class AppsFlyerLibUtil {
 
     public static void initAppsFlyer(String afKey, Context context) {
-        Log.d(SplashActivity.TAG, "initAppsFlyer");
+        Log.d(Spla.TAG, "initAppsFlyer");
         AppsFlyerLib.getInstance().setMinTimeBetweenSessions(0);
         AppsFlyerLib.getInstance().setDebugLog(true);
 

@@ -1,6 +1,7 @@
-package com.sfhwqq.ccp.a;
+package com.bee.project4;
 
-import static com.sfhwqq.ccp.b.BWebMainActivity.firebaseStr2;
+
+import static com.bee.project4.BWebMainActivity.firebaseStr2;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,14 +12,11 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.dashunbao.debugtest.BuildConfig;
+import com.bee.debug.project3.BuildConfig;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
-import com.sfhwqq.ccp.R;
-import com.sfhwqq.ccp.b.AppsFlyerLibUtil;
-import com.sfhwqq.ccp.b.BWebMainActivity;
 
 import java.util.Locale;
 

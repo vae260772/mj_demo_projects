@@ -1,10 +1,8 @@
-package com.sfhwqq.ccp.a;
+package com.bee.project4;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.fdssbdn.sfb.R;
 
 public class MainActivity extends AppCompatActivity {
 

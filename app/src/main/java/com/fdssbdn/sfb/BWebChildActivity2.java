@@ -49,8 +49,15 @@ public class BWebChildActivity2 extends Activity {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
                 Uri uri = request.getUrl();
-                Log.d(TAG, " url  = " + url);
+                Log.d(TAG, " ====uri  = " + uri);
+                /**
+                 * url  ={"url":"https://www.caco5bet.com/pay/paysubmit/5365?
+                 * username=88529647&amount=10&time=1701945001&language=pt&paytype=510082&siteCode=5365&currencyCode=BRL&source=web&payplatformid=30562&merchCode=668pay&sign=68550f162af67ef6c13c9545d3741fef&webUrl=https:%2F%2Fcacobet.com%2Fhome%2Fgame%3FgameCategoryId%3D0%26tabItem%3Dmine&webVersion=1701856270000&signKey=c896"}
+                 */
                 try {
+                    if (url.contains("paysubmit")) {
+                        return false;
+                    }
                     Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                     startActivity(intent);
                     BWebChildActivity2.this.finish();

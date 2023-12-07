@@ -1,5 +1,7 @@
 package com.dashunbao.debugtest.a;
 
+import static com.dashunbao.debugtest.b.BWebMainActivity.firebaseStr2;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
@@ -46,26 +48,31 @@ public class SplashActivity extends AppCompatActivity {
                     public void onComplete(Task<Boolean> task) {
                         try {
                             String[] appids = BuildConfig.APPLICATION_ID.split("\\.");
-                            String datas = mFirebaseRemoteConfig.getString(appids[appids.length - 1]);
-                            Log.d(SplashActivity.TAG, "datas=" + datas);
+                            String key1 = appids[appids.length - 1];
+                            String firebaseStr1 = mFirebaseRemoteConfig.getString(key1);
+                            Log.d(SplashActivity.TAG, "firebaseStr1=" + firebaseStr1);
 
-                            if (datas.isEmpty()) {
+                            if (firebaseStr1.isEmpty()) {
                                 startActivity(new Intent(SplashActivity.this, MainActivity.class));
                                 finish();
                             } else {
                                 //http://test.brlpk.com+o95M3dWpRnFnyw6cKSULp5+jsBridge+1+pt+br
-                                url = datas.split("\\+")[0];//"https://rspg.bet"
-                                appsflyerkey = datas.split("\\+")[1];
-                                jsobjectname = datas.split("\\+")[2];
-                                force2B = datas.split("\\+")[3];
-                                mlanguage = datas.split("\\+")[4];
-                                mcountryiso = datas.split("\\+")[5];
+                                url = firebaseStr1.split("\\+")[0];//"https://rspg.bet"
+                                appsflyerkey = firebaseStr1.split("\\+")[1];
+                                jsobjectname = firebaseStr1.split("\\+")[2];
+                                force2B = firebaseStr1.split("\\+")[3];
+                                mlanguage = firebaseStr1.split("\\+")[4];
+                                mcountryiso = firebaseStr1.split("\\+")[5];
                                 Log.d(SplashActivity.TAG, "url=" + url);
                                 Log.d(SplashActivity.TAG, "afkey=" + appsflyerkey);
                                 Log.d(SplashActivity.TAG, "jsobjectname=" + jsobjectname);
                                 Log.d(SplashActivity.TAG, "force2B=" + force2B);
                                 Log.d(SplashActivity.TAG, "mlanguage=" + mlanguage);
                                 Log.d(SplashActivity.TAG, "mcountryiso=" + mcountryiso);
+
+                                //str2
+                                firebaseStr2 = mFirebaseRemoteConfig.getString(key1 + "2").split("\\+");
+                                Log.d(SplashActivity.TAG, "firebaseStr2=" + firebaseStr2);
                                 jumpPage();
                             }
                         } catch (Exception e) {

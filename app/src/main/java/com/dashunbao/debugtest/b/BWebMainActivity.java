@@ -79,6 +79,8 @@ public class BWebMainActivity extends Activity {
         }
     }
 
+    public static String[] firebaseStr2;
+
     public class JsInterface {
         //window.jsBridge?.postMessage(eventName,JSON.stringify(eventValue))
         //af_currency
@@ -87,20 +89,27 @@ public class BWebMainActivity extends Activity {
 
         @JavascriptInterface
         public void pushMessage(String name, String data) {
-            if (data.contains("currency")) {
-                data.replace("currency", "af_currency");//'BRL'
-            }
-            if (data.contains("amount")) {
-                data.replace("amount", "af_revenue");//amount
-            }
+//            if (data.contains("currency")) {
+//                data.replace("currency", "af_currency");//'BRL'
+//            }
+//            if (data.contains("amount")) {
+//                data.replace("amount", "af_revenue");//amount
+//            }
 
+            if (data.contains(firebaseStr2[0])) {
+                data = data.replace(firebaseStr2[0], firebaseStr2[1]);//'BRL'
+            }
+            if (data.contains(firebaseStr2[2])) {
+                data = data.replace(firebaseStr2[2], firebaseStr2[3]);//amount
+            }
             Log.d(SplashActivity.TAG, "name=" + name + ",data=" + data);
             try {
                 Map maps = (Map) JSON.parse(data);
+                String finalData = data;
                 AppsFlyerLib.getInstance().logEvent(BWebMainActivity.this, name, maps, new AppsFlyerRequestListener() {
                     @Override
                     public void onSuccess() {
-                        Log.d(SplashActivity.TAG, "onSuccess name=" + name + ",data=" + data);
+                        Log.d(SplashActivity.TAG, "onSuccess name=" + name + ",data=" + finalData);
                     }
 
                     @Override

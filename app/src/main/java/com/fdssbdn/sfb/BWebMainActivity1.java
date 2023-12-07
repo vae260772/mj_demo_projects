@@ -1,6 +1,6 @@
-package com.gymabp.sqdvesw.b;
+package com.fdssbdn.sfb;
 
-import static com.gymabp.sqdvesw.A_SplashActivity.datasObj;
+import static com.fdssbdn.sfb.A_SplashActivity.datasObj;
 
 import android.app.Activity;
 import android.content.Context;

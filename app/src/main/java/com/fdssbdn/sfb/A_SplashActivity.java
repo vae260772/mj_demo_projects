@@ -1,4 +1,4 @@
-package com.gymabp.sqdvesw;
+package com.fdssbdn.sfb;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,8 +17,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
-import com.gymabp.sqdvesw.b.BWebMainActivity1;
-
 import java.util.Locale;
 import java.util.Map;
 
@@ -35,8 +33,8 @@ public class A_SplashActivity extends AppCompatActivity {
         context = this;
         FirebaseRemoteConfig mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
         FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
-                //.setMinimumFetchIntervalInSeconds(3600 * 24 * 50)//2次成功拉取配置时间间隔：50天
-                .setMinimumFetchIntervalInSeconds(0)
+                .setMinimumFetchIntervalInSeconds(3600 * 24 * 12)//2次成功拉取配置时间间隔：>10天
+                //.setMinimumFetchIntervalInSeconds(0)
                 .build();
         mFirebaseRemoteConfig.setConfigSettingsAsync(configSettings);
         mFirebaseRemoteConfig.fetchAndActivate()

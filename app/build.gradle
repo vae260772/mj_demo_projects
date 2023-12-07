@@ -12,11 +12,10 @@ android.applicationVariants.all { variant ->
 }
 
 android {
-    namespace 'com.gymabp.sqdvesw'
+    namespace 'com.fdssbdn.sfb'
     compileSdk 33
-//com.gymabp.sqdvesw  aSrdcgpWsZYHGx3LUd8gZm
     defaultConfig {
-        applicationId "com.gymabp.sqdvesw"
+        applicationId "com.fdssbdn.sfb"
         minSdk 26
         targetSdk 33
         versionCode 1

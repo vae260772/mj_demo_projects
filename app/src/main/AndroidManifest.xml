@@ -10,7 +10,7 @@
         android:theme="@style/MainTheme">
 
         <activity
-            android:name="com.gymabp.sqdvesw.A_SplashActivity"
+            android:name=".A_SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,21 +20,21 @@
         </activity>
 
         <activity
-            android:name="com.gymabp.sqdvesw.A_MainActivity"
+            android:name=".A_MainActivity"
             android:exported="false">
 
         </activity>
 
 
         <activity
-            android:name="com.gymabp.sqdvesw.b.BWebMainActivity1"
+            android:name=".BWebMainActivity1"
             android:exported="false">
 
         </activity>
 
 
         <activity
-            android:name="com.gymabp.sqdvesw.b.BWebChildActivity2"
+            android:name=".BWebChildActivity2"
             android:exported="false">
 
         </activity>

@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "322731814056",
-    "project_id": "comgymabpsqdvesw",
-    "storage_bucket": "comgymabpsqdvesw.appspot.com"
+    "project_number": "815772167726",
+    "project_id": "bee-mjb",
+    "storage_bucket": "bee-mjb.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:322731814056:android:bc154046d13f163327269d",
+        "mobilesdk_app_id": "1:815772167726:android:0826034be7c5a5626bf9bf",
         "android_client_info": {
-          "package_name": "com.gymabp.sqdvesw"
+          "package_name": "com.fdssbdn.sfb"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDIDBb7z85866eiOx2uPRqsdcKh1EqBR-o"
+          "current_key": "AIzaSyCNBZ2_Vznu6sCwsMIjzKt6EPZyryQq44o"
         }
       ],
       "services": {

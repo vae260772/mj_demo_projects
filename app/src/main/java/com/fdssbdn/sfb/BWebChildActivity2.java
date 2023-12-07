@@ -1,5 +1,7 @@
 package com.fdssbdn.sfb;
 
+import static com.fdssbdn.sfb.A_SplashActivity.datasObj;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
@@ -57,7 +59,8 @@ public class BWebChildActivity2 extends Activity {
                 Log.d(TAG, " ====uri  = " + uri);
 
                 try {
-                    if (url.contains("paysubmit")) {
+                    // paysubmit
+                    if (url.contains(datasObj[12])) {
                         return false;
                     }
                     Intent intent = new Intent(Intent.ACTION_VIEW, uri);

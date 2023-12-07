@@ -1,4 +1,4 @@
-package com.dashunbao.debugtest.b;
+package com.sfhwqq.ccp.b;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -17,7 +17,7 @@ import androidx.annotation.Nullable;
 import com.alibaba.fastjson.JSON;
 import com.appsflyer.AppsFlyerLib;
 import com.appsflyer.attribution.AppsFlyerRequestListener;
-import com.dashunbao.debugtest.a.SplashActivity;
+import com.sfhwqq.ccp.a.SplashActivity;
 
 import java.util.Map;
 

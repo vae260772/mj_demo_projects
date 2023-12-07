@@ -1,4 +1,4 @@
-package com.dashunbao.debugtest.b;
+package com.sfhwqq.ccp.b;
 
 import android.content.Context;
 import android.util.Log;
@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import com.appsflyer.AppsFlyerConversionListener;
 import com.appsflyer.AppsFlyerLib;
 import com.appsflyer.attribution.AppsFlyerRequestListener;
-import com.dashunbao.debugtest.a.SplashActivity;
+import com.sfhwqq.ccp.a.SplashActivity;
 
 import java.util.Map;
 

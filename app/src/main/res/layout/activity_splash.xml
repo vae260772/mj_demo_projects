@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@mipmap/splash"
-    tools:context="com.dashunbao.debugtest.a.MainActivity">
+    tools:context="com.sfhwqq.ccp.a.MainActivity">
 
     <ProgressBar
         android:layout_width="90dp"

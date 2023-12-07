@@ -1,6 +1,6 @@
-package com.dashunbao.debugtest.a;
+package com.sfhwqq.ccp.a;
 
-import static com.dashunbao.debugtest.b.BWebMainActivity.firebaseStr2;
+import static com.sfhwqq.ccp.b.BWebMainActivity.firebaseStr2;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,13 +12,13 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.dashunbao.debugtest.BuildConfig;
-import com.dashunbao.debugtest.R;
-import com.dashunbao.debugtest.b.AppsFlyerLibUtil;
-import com.dashunbao.debugtest.b.BWebMainActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
+import com.sfhwqq.ccp.R;
+import com.sfhwqq.ccp.b.AppsFlyerLibUtil;
+import com.sfhwqq.ccp.b.BWebMainActivity;
 
 import java.util.Locale;
 

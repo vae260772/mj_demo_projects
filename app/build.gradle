@@ -10,7 +10,7 @@ android.applicationVariants.all { variant ->
 }
 
 android {
-    namespace 'com.dashunbao.debugtest'
+    namespace 'com.sfhwqq.ccp'
     compileSdk 33
     defaultConfig {
         applicationId "com.sfhwqq.ccp"

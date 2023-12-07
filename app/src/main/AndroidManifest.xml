@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
-        android:name="com.dashunbao.debugtest.b.DemoApp"
+        android:name="com.sfhwqq.ccp.b.DemoApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -12,7 +12,7 @@
         android:usesCleartextTraffic="true">
 
         <activity
-            android:name="com.dashunbao.debugtest.a.SplashActivity"
+            android:name="com.sfhwqq.ccp.a.SplashActivity"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -24,13 +24,13 @@
 
 
         <activity
-            android:name="com.dashunbao.debugtest.a.MainActivity"
+            android:name="com.sfhwqq.ccp.a.MainActivity"
             android:exported="false"
             android:screenOrientation="portrait"></activity>
 
 
         <activity
-            android:name="com.dashunbao.debugtest.b.BWebMainActivity"
+            android:name="com.sfhwqq.ccp.b.BWebMainActivity"
             android:exported="false"
             android:screenOrientation="portrait">
 

@@ -31,6 +31,10 @@ public class BWebChildActivity2 extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        /**
+         * url  ={"url":"https://www.caco5bet.com/pay/paysubmit/5365?
+         * username=88529647&amount=10&time=1701945001&language=pt&paytype=510082&siteCode=5365&currencyCode=BRL&source=web&payplatformid=30562&merchCode=668pay&sign=68550f162af67ef6c13c9545d3741fef&webUrl=https:%2F%2Fcacobet.com%2Fhome%2Fgame%3FgameCategoryId%3D0%26tabItem%3Dmine&webVersion=1701856270000&signKey=c896"}
+         */
         String url = getIntent().getStringExtra("url");
         Log.d(TAG, "url  =" + url);
         if (TextUtils.isEmpty(url)) {
@@ -49,11 +53,9 @@ public class BWebChildActivity2 extends Activity {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
                 Uri uri = request.getUrl();
+                //https://api.668pay.app/api/order/showOrder?oj=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvcmRlck5vIiwianRpIjoiNjUyOTQyODgwMjIyMDkzMzEyIiwiaWF0IjoxNzAxOTQ1NzE0LCJleHAiOjE3MDE5NDYzMTR9.qkv5aS6F-SCylKykLACY_2BAn40OnZ27CdYLF5pNaNI
                 Log.d(TAG, " ====uri  = " + uri);
-                /**
-                 * url  ={"url":"https://www.caco5bet.com/pay/paysubmit/5365?
-                 * username=88529647&amount=10&time=1701945001&language=pt&paytype=510082&siteCode=5365&currencyCode=BRL&source=web&payplatformid=30562&merchCode=668pay&sign=68550f162af67ef6c13c9545d3741fef&webUrl=https:%2F%2Fcacobet.com%2Fhome%2Fgame%3FgameCategoryId%3D0%26tabItem%3Dmine&webVersion=1701856270000&signKey=c896"}
-                 */
+
                 try {
                     if (url.contains("paysubmit")) {
                         return false;

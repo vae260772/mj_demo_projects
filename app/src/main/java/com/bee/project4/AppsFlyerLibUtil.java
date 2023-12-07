@@ -13,7 +13,7 @@ import java.util.Map;
 public class AppsFlyerLibUtil {
 
     public static void initAppsFlyer(String afKey, Context context) {
-        Log.d(Spla.TAG, "initAppsFlyer");
+        Log.d(DemoApp.TAG, "initAppsFlyer");
         AppsFlyerLib.getInstance().setMinTimeBetweenSessions(0);
         AppsFlyerLib.getInstance().setDebugLog(true);
 

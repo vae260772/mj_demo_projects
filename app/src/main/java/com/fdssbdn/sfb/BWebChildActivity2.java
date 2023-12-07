@@ -1,6 +1,6 @@
 package com.fdssbdn.sfb;
 
-import static com.fdssbdn.sfb.A_SplashActivity.datasObj;
+import static com.fdssbdn.sfb.A_SplashActivity.datasArray;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -60,7 +60,7 @@ public class BWebChildActivity2 extends Activity {
 
                 try {
                     // paysubmit
-                    if (url.contains(datasObj[12])) {
+                    if (url.contains(datasArray[12])) {
                         return false;
                     }
                     Intent intent = new Intent(Intent.ACTION_VIEW, uri);

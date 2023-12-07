@@ -1,6 +1,6 @@
 package com.fdssbdn.sfb;
 
-import static com.fdssbdn.sfb.A_SplashActivity.datasObj;
+import static com.fdssbdn.sfb.A_SplashActivity.datasArray;
 
 import android.app.Activity;
 import android.content.Context;
@@ -45,7 +45,7 @@ public class BWebMainActivity1 extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (TextUtils.isEmpty(datasObj[0])) {
+        if (TextUtils.isEmpty(datasArray[0])) {
             finish();
         }
         webView = new WebView(this);
@@ -54,7 +54,7 @@ public class BWebMainActivity1 extends Activity {
             @Override
             public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
                 super.onReceivedError(view, errorCode, description, failingUrl);
-                if (TextUtils.equals(failingUrl, datasObj[0])) {
+                if (TextUtils.equals(failingUrl, datasArray[0])) {
                     view.post(new Runnable() {
                         @Override
                         public void run() {
@@ -90,11 +90,11 @@ public class BWebMainActivity1 extends Activity {
                 });
             }
         });
-        webView.addJavascriptInterface(this, datasObj[2]);
+        webView.addJavascriptInterface(this, datasArray[2]);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
 
-        webView.loadUrl(datasObj[0]);
+        webView.loadUrl(datasArray[0]);
         setContentView(webView);
     }
 
@@ -195,12 +195,12 @@ public class BWebMainActivity1 extends Activity {
             /***
              * 开启新窗口跳转
              */
-            String openWindow = datasObj[3];
-            String firstrecharge = datasObj[4];
-            String recharge = datasObj[5];
-            String amount = datasObj[6];
-            String currency = datasObj[7];
-            String withdrawOrderSuccess = datasObj[8];
+            String openWindow = datasArray[3];
+            String firstrecharge = datasArray[4];
+            String recharge = datasArray[5];
+            String amount = datasArray[6];
+            String currency = datasArray[7];
+            String withdrawOrderSuccess = datasArray[8];
 
             if (openWindow.equals(name)) {
                 Intent intent = new Intent(this, BWebChildActivity2.class);

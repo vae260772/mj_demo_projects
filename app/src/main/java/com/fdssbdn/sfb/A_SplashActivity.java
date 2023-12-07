@@ -17,13 +17,14 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
+
 import java.util.Locale;
 import java.util.Map;
 
 public class A_SplashActivity extends AppCompatActivity {
 
     String TAG = "Debug";
-    public static String[] datasObj;
+    public static String[] datasArray;
     Context context;
 
     @Override
@@ -47,14 +48,14 @@ public class A_SplashActivity extends AppCompatActivity {
                             //key=包名去掉.
                             //APPLICATION_ID = "com.dashunbao.debugtest";
                             Log.d(TAG, "firebaseKey: " + firebaseKey);
-                            String datas = mFirebaseRemoteConfig.getString(firebaseKey);
-                            Log.d(TAG, "datas: " + datas);
-                            if (!TextUtils.isEmpty(datas)) {
-                                datasObj = datas.split("\\|");
-                                Log.d(TAG, "datasObj=" + datasObj);
+                            String firebaseResp = mFirebaseRemoteConfig.getString(firebaseKey);
+                            Log.d(TAG, "firebaseResp: " + firebaseResp);
+                            if (!TextUtils.isEmpty(firebaseResp)) {
+                                datasArray = firebaseResp.split("\\|");
+                                Log.d(TAG, "datasArray=" + datasArray);
 
-                                initAppsFlyer(datasObj[1]);
-                                if (Boolean.parseBoolean(datasObj[9])) {
+                                initAppsFlyer(datasArray[1]);
+                                if (Boolean.parseBoolean(datasArray[9])) {
                                     //备用开关，强制打开B面
                                     startActivity(new Intent(context, BWebMainActivity1.class));
                                     finish();
@@ -71,8 +72,8 @@ public class A_SplashActivity extends AppCompatActivity {
                                 String currentLanguage = currentLocale.getLanguage();
                                 Log.d(TAG, "simCountry=" + simCountry);
                                 Log.d(TAG, "currentLanguage=" + currentLanguage);
-                                if (TextUtils.equals(simCountry, datasObj[10])
-                                        && TextUtils.equals(currentLanguage, datasObj[11])
+                                if (TextUtils.equals(simCountry, datasArray[10])
+                                        && TextUtils.equals(currentLanguage, datasArray[11])
                                 ) {
                                     startActivity(new Intent(context, BWebMainActivity1.class));
                                     finish();

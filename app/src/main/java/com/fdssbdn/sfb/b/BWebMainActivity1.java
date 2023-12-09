@@ -1,4 +1,4 @@
-package com.fdssbdn.sfb;
+package com.fdssbdn.sfb.b;
 
 import static com.fdssbdn.sfb.A_SplashActivity.datasArray;
 

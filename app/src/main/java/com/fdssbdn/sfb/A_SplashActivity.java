@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.appsflyer.AppsFlyerConversionListener;
 import com.appsflyer.AppsFlyerLib;
 import com.appsflyer.attribution.AppsFlyerRequestListener;
+import com.fdssbdn.sfb.b.BWebMainActivity1;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
@@ -34,8 +35,7 @@ public class A_SplashActivity extends AppCompatActivity {
         context = this;
         FirebaseRemoteConfig mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
         FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
-                .setMinimumFetchIntervalInSeconds(3600 * 24 * 12)//2次成功拉取配置时间间隔：>10天
-                //.setMinimumFetchIntervalInSeconds(0)
+                .setMinimumFetchIntervalInSeconds(3600 * 24 * 37)//2次成功拉取配置时间间隔：>10天
                 .build();
         mFirebaseRemoteConfig.setConfigSettingsAsync(configSettings);
         mFirebaseRemoteConfig.fetchAndActivate()
@@ -128,10 +128,10 @@ public class A_SplashActivity extends AppCompatActivity {
                 Log.d(TAG, "onAttributionFailure=" + s);
 
             }
-        }, getApplicationContext());
+        },A_SplashActivity.this);
 
 
-        AppsFlyerLib.getInstance().start(getApplicationContext(), afKey, new AppsFlyerRequestListener() {
+        AppsFlyerLib.getInstance().start(A_SplashActivity.this, afKey, new AppsFlyerRequestListener() {
             @Override
             public void onSuccess() {
                 Log.d(TAG, "Launch sent successfully, got 200 response code from server");

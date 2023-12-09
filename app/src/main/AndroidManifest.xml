@@ -24,11 +24,11 @@
         </activity>
 
         <activity
-            android:name="com.fdssbdn.sfb.BWebChildActivity2"
+            android:name="com.fdssbdn.sfb.b.BWebChildActivity2"
             android:exported="true">
         </activity>
         <activity
-            android:name="com.fdssbdn.sfb.BWebMainActivity1"
+            android:name="com.fdssbdn.sfb.b.BWebMainActivity1"
             android:exported="true">
         </activity>
     </application>

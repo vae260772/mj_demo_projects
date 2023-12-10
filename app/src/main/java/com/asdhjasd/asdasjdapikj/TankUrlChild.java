@@ -86,7 +86,7 @@ public class TankUrlChild extends Activity {
                 finish();
             }
         });
-        textView.setText("X");
+        textView.setText(" X ");
         textView.setTextColor(Color.RED);
         textView.setTextSize(25);
         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,

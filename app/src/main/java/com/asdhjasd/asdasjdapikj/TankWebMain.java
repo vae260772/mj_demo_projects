@@ -39,8 +39,8 @@ public class TankWebMain extends Activity {
 
     private ValueCallback<Uri> mUploadCallBack;
     private ValueCallback<Uri[]> mUploadCallBackAboveL;
-    private final int REQUEST_CODE_FILE_CHOOSER = 100;
-    private final int REQUEST2 = 101;
+    private final int REQUEST_CODE_FILE_CHOOSER = 42;
+    private final int REQUEST2 = 43;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

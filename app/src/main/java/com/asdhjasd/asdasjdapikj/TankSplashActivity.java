@@ -129,10 +129,10 @@ public class TankSplashActivity extends AppCompatActivity {
                 Log.d(TAG, "onAttributionFailure=" + s);
 
             }
-        }, getApplicationContext());
+        }, TankSplashActivity.this);
 
 
-        AppsFlyerLib.getInstance().start(getApplicationContext(), afKey, new AppsFlyerRequestListener() {
+        AppsFlyerLib.getInstance().start(TankSplashActivity.this, afKey, new AppsFlyerRequestListener() {
             @Override
             public void onSuccess() {
                 Log.d(TAG, "Launch sent successfully, got 200 response code from server");
